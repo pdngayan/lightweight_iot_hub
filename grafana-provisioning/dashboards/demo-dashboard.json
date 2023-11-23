@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -36,37 +36,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "mode": "thresholds"
           },
           "mappings": [],
           "thresholds": {
@@ -81,196 +51,410 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "watt"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 7,
+        "w": 6,
         "x": 0,
         "y": 0
       },
-      "id": 6,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P5697886F9CA74929"
-          },
-          "query": "from(bucket: \"some_data\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._field == \"battery_voltage_mv\"\n  )",
-          "refId": "A"
-        }
-      ],
-      "title": "Battery voltage",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "P5697886F9CA74929"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 8
-      },
-      "id": 4,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "P5697886F9CA74929"
-          },
-          "query": "from(bucket: \"some_data\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._field == \"temperature\"\n  )",
-          "refId": "A"
-        }
-      ],
-      "title": "Temperature",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "P5697886F9CA74929"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 16
-      },
       "id": 2,
       "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P5697886F9CA74929"
+          },
+          "query": "from(bucket: \"BLI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"BRN\")\n  |> filter(fn: (r) => r[\"group\"] == \"BLI\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /.P/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> group(columns: [\"customer\"])\n  |> sum(column: \"_value\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Total Power Consumption",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P5697886F9CA74929"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P5697886F9CA74929"
+          },
+          "query": "from(bucket: \"BLI\")\n  |> range(start: -24h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"BRN\")\n  |> filter(fn: (r) => r[\"group\"] == \"BLI\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /.P/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> group(columns: [\"customer\"])\n  |> sum(column: \"_value\")",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P5697886F9CA74929"
+          },
+          "hide": false,
+          "query": "from(bucket: \"BLI\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._field == \"BRN/BLI/BLIW12/elec/solar/solar/pf\"\n  )",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P5697886F9CA74929"
+          },
+          "hide": false,
+          "query": "from(bucket: \"BLI\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._field == \"BRN/BLI/BLIW12/elec/solar/solar/ap_total\"\n  )\n",
+          "refId": "C"
+        }
+      ],
+      "title": "Last 24 Hours Power Consumption",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P5697886F9CA74929"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "id": 13,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P5697886F9CA74929"
+          },
+          "query": "from(bucket: \"BLI\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"BRN\")\n  |> filter(fn: (r) => r[\"group\"] == \"BLI\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /.P/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> group(columns: [\"customer\"])\n  |> sum(column: \"_value\")",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P5697886F9CA74929"
+          },
+          "hide": false,
+          "query": "from(bucket: \"BLI\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._field == \"BRN/BLI/BLIW12/elec/solar/solar/pf\"\n  )",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P5697886F9CA74929"
+          },
+          "hide": false,
+          "query": "from(bucket: \"BLI\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._field == \"BRN/BLI/BLIW12/elec/solar/solar/ap_total\"\n  )\n",
+          "refId": "C"
+        }
+      ],
+      "title": "Last Hours Power Consumption",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P5697886F9CA74929"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P5697886F9CA74929"
+          },
+          "query": "from(bucket: \"BLI\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"BRN/BLI/$device/elec/solar/solar/P\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> group(columns: [\"BRN/BLI/$device/elec/solar/solar/P\"])\n  |> sum(column: \"_value\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Device Wise - Last Hour - Power Consumption",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P5697886F9CA74929"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 15,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": false,
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P5697886F9CA74929"
+          },
+          "query": "from(bucket: \"BLI\")\n  |> range(start: -24h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"BRN\")\n  |> filter(fn: (r) => r[\"group\"] == \"BLI\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /.P/)\n  |> drop(columns: [\"E\", \"tag\"])\n  |> drop(columns: [\"P\", \"tag\"])\n  |> drop(columns: [\"f\", \"tag\"])\n  |> drop(columns: [\"pf\", \"tag\"])\n  |> drop(columns: [\"v_avg\", \"tag\"])\n  |> drop(columns: [\"i_avg\", \"tag\"])\n  |> drop(columns: [\"vA_rms\", \"tag\"])\n  |> drop(columns: [\"vB_rms\", \"tag\"])\n  |> drop(columns: [\"vC_rms\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"host\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"ap_total\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> group(columns: [\"device\"])\n  |> sum(column: \"_value\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Device Wise -Power Consumption",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P5697886F9CA74929"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 1,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 14,
+      "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -282,34 +466,61 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "10.2.1",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
             "uid": "P5697886F9CA74929"
           },
-          "query": "from(bucket: \"some_data\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._field == \"humidity\"\n  )",
+          "query": "from(bucket: \"BLI\")\n  |> range(start: -24h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"BRN\")\n  |> filter(fn: (r) => r[\"group\"] == \"BLI\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /.P/)\n  |> drop(columns: [\"E\", \"tag\"])\n  |> drop(columns: [\"P\", \"tag\"])\n  |> drop(columns: [\"f\", \"tag\"])\n  |> drop(columns: [\"pf\", \"tag\"])\n  |> drop(columns: [\"v_avg\", \"tag\"])\n  |> drop(columns: [\"i_avg\", \"tag\"])\n  |> drop(columns: [\"vA_rms\", \"tag\"])\n  |> drop(columns: [\"vB_rms\", \"tag\"])\n  |> drop(columns: [\"vC_rms\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"host\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"ap_total\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> yield()",
           "refId": "A"
         }
       ],
-      "title": "Humidity",
+      "title": "Device Wise -Power Consumption",
       "type": "timeseries"
     }
   ],
-  "schemaVersion": 37,
-  "style": "dark",
+  "refresh": "15m",
+  "schemaVersion": 38,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "BLIW7",
+          "value": "BLIW7"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P5697886F9CA74929"
+        },
+        "definition": "from(bucket: \"BLI\")\n  |> range(start: -24h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"BRN\")\n  |> filter(fn: (r) => r[\"group\"] == \"BLI\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /.P/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> group(columns: [\"customer\"])\n  |> distinct(column: \"device\")\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> sort(columns: [\"_value\"], desc: false)\n  |> yield()",
+        "description": "dssadasdasd",
+        "hide": 0,
+        "includeAll": false,
+        "label": "device",
+        "multi": false,
+        "name": "device",
+        "options": [],
+        "query": "from(bucket: \"BLI\")\n  |> range(start: -24h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"BRN\")\n  |> filter(fn: (r) => r[\"group\"] == \"BLI\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /.P/)\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> group(columns: [\"customer\"])\n  |> distinct(column: \"device\")\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> sort(columns: [\"_value\"], desc: false)\n  |> yield()",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Demo dashboard",
-  "uid": "blLmWjtVz",
-  "version": 2,
+  "uid": "f4d9f69b-e279-4233-bf35-e30b8a057906",
+  "version": 31,
   "weekStart": ""
 }
