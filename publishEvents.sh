@@ -33,7 +33,7 @@ for ((i=1; i<=$MESSAGE_COUNT; i++)); do
     Val8=$(generate_random 200 250)
     Val9=$(generate_random 200 250)
     Val10=$(generate_random 200 250)
-    Val11=$(generate_random 0 10)
+    Val11=$(generate_random 0 28)
 
     # Create the message payload
 
