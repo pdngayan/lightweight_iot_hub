@@ -1,0 +1,1 @@
+influx write -b BLI/Master  --token 4eYvsu8wZCJ6tKuE2sxvFHkvYFwSMVK0011hEEiojvejzpSaij86vYQomN_12au6eK-2MZ6Knr-Sax201y70w== -o BRN  --format=csv -f data.csv
