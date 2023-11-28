@@ -134,3 +134,62 @@ datasources:
 ### Grafana dashboard
 Default Grafana dashboard is also set up in this directory: `grafana-provisioning/dashboards`
 
+
+
+[[processors.starlark]]
+source = '''
+def apply(metric):
+# Create a dictionary for the new structure
+new_metric = {
+'customer': '',
+'group': '',
+'device': '',
+'utility_type': '',
+'panel_board': '',
+'power_analyze': '',
+'parameter': [],
+# Initialize additional fields
+'i_avg': 0.0,
+'v_avg': 0.0,
+'P': 0.0,
+'pf': 0.0,
+'ap_total': 0.0,
+'f': 0.0,
+'E': 0.0,
+'vA_rms': 0.0,
+'vB_rms': 0.0,
+'vC_rms': 0.0
+}
+
+    # Iterate through fields in the original metric
+    for key, value in metric.fields.items():
+        # Split the key to get the different parts
+        parts = key.split('/')
+        if len(parts) >= 7:
+            # Assign values to the new structure
+            new_metric['customer'] = str(parts[0])
+            new_metric['group'] = str(parts[1])
+            new_metric['device'] = str(parts[2])
+            new_metric['utility_type'] = str(parts[3])
+            new_metric['panel_board'] = str(parts[4])
+            new_metric['power_analyze'] = str(parts[5])
+
+            # Assign specific fields or add to parameter array
+            field_key = parts[6]
+            #print("@@@@@@@@@@@@@ field_key", field_key)
+            #print("@@@@@@@@@@@@@ value", value)
+            if field_key in new_metric:
+                new_metric[field_key] = value  # Keep numeric value
+            else:
+                new_metric['parameter'].append({'key': field_key, 'val': value})  # Keep numeric value in parameters
+
+    # Convert the new structure into a metric
+    for k, v in new_metric.items():
+        if k == 'parameter':
+            metric.fields['parameters'] = str(v)
+        else:
+            # Ensure all tags are converted to strings
+            metric.tags[k] = str(v)
+    return metric
+'''
+

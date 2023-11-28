@@ -44,6 +44,30 @@ services:
       - influxdb
     networks:
       - iot
+
+  telegraf2:
+    image: telegraf
+    container_name: telegraf2
+    restart: always
+    volumes:
+      - ./telegraf2.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - mosquitto
+      - influxdb
+    networks:
+      - iot
+
+  telegraf3:
+    image: telegraf
+    container_name: telegraf3
+    restart: always
+    volumes:
+      - ./telegraf3.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - mosquitto
+      - influxdb
+    networks:
+      - iot
   
   grafana:
     image: grafana/grafana
