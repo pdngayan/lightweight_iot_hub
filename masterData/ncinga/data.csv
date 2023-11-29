@@ -1,0 +1,10 @@
+#datatype,dateTime:RFC3339,string,string,string,string
+#group,FALSE,TRUE,FALSE,FALSE,FALSE
+#default,,,,,
+_time,_measurement,name,description,assertid,
+2023-11-27T00:00:00Z,assert,Node A,NCINGA Door Area,NODEA,
+2023-11-27T00:01:00Z,assert,Node B,NCINGA HR Team Area,NODEB,
+2023-11-27T00:02:00Z,assert,Node C,NCINGA Maya room Area,NODEC,
+2023-11-27T00:03:00Z,assert,Node D,NCINGA Pool Area,NODED,
+2023-11-27T00:04:00Z,assert,Node E,NCINGA Kitchen Area,NODEE,
+
