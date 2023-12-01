@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 13,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -912,7 +912,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -943,7 +943,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "IFINITY Zone wise",
-  "uid": "af6d510d-8984-4683-bd32-7737d37840df",
-  "version": 84,
+  "uid": "af6d510d-8984-4683-bd32-7737d37840df1",
+  "version": 1,
   "weekStart": ""
 }
