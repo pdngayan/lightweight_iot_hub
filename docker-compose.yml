@@ -12,7 +12,10 @@ services:
       - iot
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-  
+      - ./cert/cert.pem:/mosquitto/cert.pem:ro
+      - ./cert/chain.pem:/mosquitto/chain.pem:ro
+      - ./cert/privkey.pem:/mosquitto/privkey.pem:ro
+
   influxdb:
     image: influxdb
     container_name: influxdb
@@ -38,7 +41,6 @@ services:
     restart: always
     volumes:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
-      - ./script.sh:/etc/telegraf/script.sh:ro
     depends_on:
       - mosquitto
       - influxdb
