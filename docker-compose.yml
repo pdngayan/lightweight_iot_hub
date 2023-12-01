@@ -12,9 +12,9 @@ services:
       - iot
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - ./cert/cert.pem:/mosquitto/cert.pem:ro
-      - ./cert/chain.pem:/mosquitto/chain.pem:ro
-      - ./cert/privkey.pem:/mosquitto/privkey.pem:ro
+      - ./cert/ca.crt:/mosquitto/ca.crt:ro
+      - ./cert/server.key:/mosquitto/server.key:ro
+      - ./cert/server.crt:/mosquitto/server.crt:ro
 
   influxdb:
     image: influxdb
