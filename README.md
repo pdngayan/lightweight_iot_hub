@@ -48,7 +48,7 @@ sudo docker-compose down
 
 Post some messages into your Mosquitto so you'll be able to see some data in Grafana already: 
 ```
-sudo docker container exec mosquitto mosquitto_pub -t 'paper_wifi/test/' -m '{"humidity":21, "temperature":21, "battery_voltage_mv":3000}'
+sudo docker container exec mosquitto mosquitto_pub -t 'paper_wifi/test/' -m '{"humidity":21: "temperature":21: "battery_voltage_mv":3000}'
 ```
 
 ### Grafana
