@@ -764,11 +764,11 @@
             "type": "influxdb",
             "uid": "P5697886F9CA74929"
           },
-          "query": "import \"date\"\nimport \"dict\"\nimport \"strings\"\ndates =[2:\"Monday\",3:\"Tuesday\",4:\"Wednesday\",5:\"Thursday\",6:\"Friday\",0:\"Saturday\",1:\"Sunday\"]\ndata = {\"{NODEA,NODEB,NODEC,NODED,NODEE}\":\"data_set_MODBUS06\",\"NODEA\":\"data_set_MODBUS16\",\"NODEB\":\"data_set_MODBUS23\",\"NODEC\":\"data_set_MODBUS30\",\"NODED\":\"data_set_MODBUS37\",\"NODEE\":\"data_set_MODBUS44\"}\nfrom(bucket: \"NCINGA\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /data_set/)\n  |> map(fn: (r) => ({ r with modebusid:data[\"NODEA\"]})) \n  |> filter(fn: (r) => r[\"_field\"] == r.modebusid)\n  |> aggregateWindow(every: 1d, fn: sum)\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"host\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> sort(columns: [\"key\"], desc: true)\n  |> map(fn: (r) => ({ r with \n    namedDay:\n      dict.get(dict: dates, key:date.weekDay(t: r._time), default: \"\"),\n  })) \n |> drop(columns: [\"modebusid\", \"tag\"])\n |> drop(columns: [\"_time\", \"tag\"])\n |> group(columns: [\"namedDay\"])\n |> sum(column: \"_value\")\n |> rename(fn: (column) => {_newColumnName = if column =~ /^_/ then \"\" else column return _newColumnName})\n |> map(fn: (r) => ({r with _value: if strings.countStr(v: \"NODEA\", substr: \",\")> 1 then r._value else r._value / 1000.0}))\n |> drop(columns: [\"_value\", \"tag\"])\n",
+          "query": "import \"date\"\nimport \"dict\"\nimport \"strings\"\ndates =[2:\"Monday\",3:\"Tuesday\",4:\"Wednesday\",5:\"Thursday\",6:\"Friday\",0:\"Saturday\",1:\"Sunday\"]\ndata = {\"{NODEA,NODEB,NODEC,NODED,NODEE}\":\"data_set_MODBUS06\",\"NODEA\":\"data_set_MODBUS16\",\"NODEB\":\"data_set_MODBUS23\",\"NODEC\":\"data_set_MODBUS30\",\"NODED\":\"data_set_MODBUS37\",\"NODEE\":\"data_set_MODBUS44\"}\nfrom(bucket: \"NCINGA\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /data_set/)\n  |> map(fn: (r) => ({ r with modebusid:data[\"${assertID}\"]})) \n  |> filter(fn: (r) => r[\"_field\"] == r.modebusid)\n  |> aggregateWindow(every: 1d, fn: sum)\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"host\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> sort(columns: [\"key\"], desc: true)\n  |> map(fn: (r) => ({ r with \n    namedDay:\n      dict.get(dict: dates, key:date.weekDay(t: r._time), default: \"\"),\n  })) \n |> drop(columns: [\"modebusid\", \"tag\"])\n |> drop(columns: [\"_time\", \"tag\"])\n |> group(columns: [\"namedDay\"])\n |> sum(column: \"_value\")\n |> rename(fn: (column) => {_newColumnName = if column =~ /^_/ then \"\" else column return _newColumnName})\n |> map(fn: (r) => ({r with _value: if strings.countStr(v: \"NODEA\", substr: \",\")> 1 then r._value else r._value / 1000.0}))\n |> drop(columns: [\"_value\", \"tag\"])\n",
           "refId": "A"
         }
       ],
-      "title": "Daily Energy Consumption  ",
+      "title": "Daily Energy Consumption   - ${assertID}",
       "type": "piechart"
     },
     {
@@ -835,7 +835,7 @@
           "refId": "A"
         }
       ],
-      "title": "Weekly Energy Consumption  ",
+      "title": "Weekly Energy Consumption  - ${assertID}",
       "type": "piechart"
     },
     {
@@ -901,7 +901,7 @@
           "refId": "A"
         }
       ],
-      "title": "Mothly Energy Consumption  ",
+      "title": "Mothly Energy Consumption  - ${assertID}",
       "type": "piechart"
     }
   ],
@@ -912,9 +912,9 @@
     "list": [
       {
         "current": {
-          "selected": true,
-          "text": "All",
-          "value": "$__all"
+          "selected": false,
+          "text": "NODEA",
+          "value": "NODEA"
         },
         "datasource": {
           "type": "influxdb",
@@ -944,6 +944,6 @@
   "timezone": "",
   "title": "NCINGA Zone wise",
   "uid": "af6d510d-8984-4683-bd32-7737d37840df",
-  "version": 84,
+  "version": 88,
   "weekStart": ""
 }

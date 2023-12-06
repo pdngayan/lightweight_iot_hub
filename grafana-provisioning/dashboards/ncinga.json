@@ -567,7 +567,7 @@
               }
             ]
           },
-          "unit": "watt"
+          "unit": "kwatt"
         },
         "overrides": []
       },
@@ -627,7 +627,7 @@
               }
             ]
           },
-          "unit": "watth"
+          "unit": "kwatth"
         },
         "overrides": []
       },
@@ -660,7 +660,7 @@
             "type": "influxdb",
             "uid": "P5697886F9CA74929"
           },
-          "query": "from(bucket: \"NCINGA\")\n  |> range(start: -24h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /data_set/)\n  |> filter(fn: (r) => r[\"_field\"] ==\"data_set_MODBUS10\")\n  |> last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"host\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])",
+          "query": "from(bucket: \"NCINGA\")\n  |> range(start: -1)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] =~ /data_set/)\n  |> filter(fn: (r) => r[\"_field\"] ==\"data_set_MODBUS10\")\n |> last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"host\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -1154,7 +1154,7 @@
               }
             ]
           },
-          "unit": "watth"
+          "unit": "kwatth"
         },
         "overrides": []
       },
@@ -1608,7 +1608,7 @@
               }
             ]
           },
-          "unit": "watth"
+          "unit": "kwatth"
         },
         "overrides": []
       },
@@ -2062,7 +2062,7 @@
               }
             ]
           },
-          "unit": "watth"
+          "unit": "kwatth"
         },
         "overrides": []
       },
@@ -2516,7 +2516,7 @@
               }
             ]
           },
-          "unit": "watth"
+          "unit": "kwatth"
         },
         "overrides": []
       },
@@ -2970,7 +2970,7 @@
               }
             ]
           },
-          "unit": "watth"
+          "unit": "kwatth"
         },
         "overrides": []
       },
@@ -3396,13 +3396,13 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "NCINGA",
   "uid": "e47ef940-8b6b-43fa-8ba4-5192be80b670dsds",
-  "version": 3,
+  "version": 9,
   "weekStart": ""
 }
