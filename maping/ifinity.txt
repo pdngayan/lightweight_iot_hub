@@ -1,0 +1,53 @@
+MODBUS00 : Voltage A-N
+MODBUS01 : Voltage B-N
+MODBUS02 : Voltage C-N
+MODBUS03 : Current - Phase A
+MODBUS04 : Current - Phase B
+MODBUS05 : Current - Phase C
+MODBUS06 : Active Power - Total
+MODBUS07 : Reactive Power - Total
+MODBUS08 : Apparent Power - Total
+MODBUS09 : Frequency
+MODBUS10 : Active Energy - Total
+MODBUS11 : Apparent Energy - Total
+MODBUS12 : power factor
+
+MODBUS13 : Active Energy - Node A : /100
+MODBUS14 : Current - Node A  : /100
+MODBUS15 : Voltage - Node A  : /10
+MODBUS16 : Active Power - Node A : /1000
+MODBUS17 : Reactive Power - Node A
+MODBUS18 : Power Factor - Node A  : /1000
+MODBUS19 : Frequency - Node A  : /100
+
+MODBUS20 : Active Energy - Node B : /100
+MODBUS21 : Current - Node B  : /100
+MODBUS22 : Voltage - Node B  : /10
+MODBUS23 : Active Power - Node B : /1000
+MODBUS24 : Reactive Power - Node B
+MODBUS25 : Power Factor - Node B  : /1000
+MODBUS26 : Frequency - Node B  : /100
+
+MODBUS27 : Active Energy - Node C : /100
+MODBUS28 : Current - Node C  : /100
+MODBUS29 : Voltage -Node C  : /10
+MODBUS30 : Active Power - Node C : /1000
+MODBUS31 : Reactive Power - Node C
+MODBUS32 : Power Factor - Node C  : /1000
+MODBUS33 : Frequency - Node C  : /100
+
+MODBUS34 : Active Energy - Node D : /100
+MODBUS35 : Current - Node D  : /100
+MODBUS36 : Voltage - Node D  : /10
+MODBUS37 : Active Power - Node D : /1000
+MODBUS38 : Reactive Power - Node D
+MODBUS39 : Power Factor - Node D  : /1000
+MODBUS40 : Frequency - Node D  : /100
+
+MODBUS41 : Active Energy - Node E : /100
+MODBUS42 : Current - Node E  : /100
+MODBUS43 : Voltage - Node E  : /10
+MODBUS44 : Active Power - Node E : /1000
+MODBUS45 : Reactive Power - Node E
+MODBUS46 : Power Factor - Node E  : /1000
+MODBUS47 : Frequency - Node E  : /100
