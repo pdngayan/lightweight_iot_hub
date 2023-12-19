@@ -425,10 +425,14 @@
     "from": "now-30m",
     "to": "now"
   },
-  "timepicker": {},
+  "timepicker": {
+    "refresh_intervals": [
+      "2h"
+    ]
+  },
   "timezone": "",
   "title": "Overall",
   "uid": "f1dfe679-2a9d-46c6-bf6b-b2761c9d01d1",
-  "version": 28,
+  "version": 29,
   "weekStart": ""
 }
