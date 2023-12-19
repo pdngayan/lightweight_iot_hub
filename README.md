@@ -9,7 +9,7 @@ This docker compose installs and sets up:
 - [Grafana](https://grafana.com/) - The open observability platform to draw some graphs and more
 
 # Setup process
-## Install docker
+## Install docker 
 
 
 ```
