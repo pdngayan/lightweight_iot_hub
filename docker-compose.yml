@@ -13,9 +13,9 @@ services:
       - iot
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - ./cert/ca.crt:/mosquitto/ca.crt
-      - ./cert/server.key:/mosquitto/server.key
-      - ./cert/server.crt:/mosquitto/server.crt
+      - ./certs/ca.crt:/mosquitto/ca.crt
+      - ./certs/server.key:/mosquitto/server.key
+      - ./certs/server.crt:/mosquitto/server.crt
 
   influxdb:
     image: influxdb
