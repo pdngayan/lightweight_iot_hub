@@ -1,0 +1,77 @@
+import "date"
+import "dict"
+import "strings"
+import "timezone"
+ncinga=from(bucket: "NCINGA")
+  |> range(start: -24h)
+  |> filter(fn: (r) => r["_measurement"] == "mqtt_consumer")
+  |> filter(fn: (r) => r["_field"] =~ /data_set/)
+  |> filter(fn: (r) => r["_field"] == "data_set_MODBUS10")
+  |> drop(columns: ["_measurement", "tag"])
+  |> drop(columns: ["_start", "tag"])
+  |> drop(columns: ["_stop", "tag"])
+  |> drop(columns: ["host", "tag"])
+  |> drop(columns: ["topic", "tag"])
+  |> drop(columns: ["_field", "tag"])
+  |> map(fn: (r) => ({ r with  hour: date.hour(t: r._time,location: timezone.location(name: "Asia/Colombo"))}))
+  |> map(fn: (r) => ({ r with
+      date:date.monthDay(t: r._time),
+      hourDesc:
+      if (r.hour > 0 and r.hour< 6) then "Non-Working"
+      else if (r.hour > 6 and r.hour < 8) then "Setting-Up"
+      else if (r.hour > 8 and r.hour < 18) then "Working"
+      else if (r.hour > 18 and r.hour < 20) then "Extra-Working"
+      else if (r.hour > 20 and r.hour < 23) then "Non-Working"
+      else if (r.hour > 23) then "Non-Working"
+      else if (r.hour == 0) then "Non-Working"
+      else if (r.hour == 6) then "Setting-Up"
+      else if (r.hour == 8) then "Working"
+      else if (r.hour == 18) then "Extra-Working"
+      else if (r.hour == 20) then "Non-Working"
+      else if (r.hour == 23) then "Non-Working" else "-",
+  }))
+  |>sort(columns: ["date","hour"])
+  |> difference(nonNegative: true)
+  |> group(columns: ["hourDesc","hour"])
+ |> sum(column: "_value")
+
+
+
+
+ifinity=from(bucket: "IFINITY")
+  |> range(start: -24h)
+  |> filter(fn: (r) => r["_measurement"] == "mqtt_consumer")
+  |> filter(fn: (r) => r["_field"] =~ /data_set/)
+  |> filter(fn: (r) => r["_field"] == "data_set_MODBUS10")
+  |> drop(columns: ["_measurement", "tag"])
+  |> drop(columns: ["_start", "tag"])
+  |> drop(columns: ["_stop", "tag"])
+  |> drop(columns: ["host", "tag"])
+  |> drop(columns: ["topic", "tag"])
+  |> drop(columns: ["_field", "tag"])
+  |> map(fn: (r) => ({ r with  hour: date.hour(t: r._time,location: timezone.location(name: "Asia/Colombo"))}))
+  |> map(fn: (r) => ({ r with
+      date:date.monthDay(t: r._time),
+      hourDesc:
+      if (r.hour> 0 and r.hour< 6) then "Non-Working"
+      else if (r.hour > 6 and r.hour < 8) then "Setting-Up"
+      else if (r.hour > 8 and r.hour < 18) then "Working"
+      else if (r.hour > 18 and r.hour < 20) then "Extra-Working"
+      else if (r.hour > 20 and r.hour < 23) then "Non-Working"
+      else if (r.hour > 23) then "Non-Working"
+      else if (r.hour == 0) then "Non-Working"
+      else if (r.hour == 6) then "Setting-Up"
+      else if (r.hour == 8) then "Working"
+      else if (r.hour == 18) then "Extra-Working"
+      else if (r.hour == 20) then "Non-Working"
+      else if (r.hour == 23) then "Non-Working" else "-",
+  }))
+  |>sort(columns: ["date","hour"])
+  |> difference(nonNegative: true)
+  |> group(columns: ["hourDesc","hour"])
+ |> sum(column: "_value")
+
+union(tables: [ncinga, ifinity])
+ |> group(columns: ["hourDesc"])
+ |> sum(column: "_value")
+ |> rename(fn: (column) => {_newColumnName = if column =~ /^_/ then "" else column return _newColumnName})
