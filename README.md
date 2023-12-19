@@ -11,6 +11,7 @@ This docker compose installs and sets up:
 # Setup process
 ## Install docker
 
+
 ```
 sudo apt install docker.io
 sudo apt install docker-compose 
