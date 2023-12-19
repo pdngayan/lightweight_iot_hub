@@ -13,7 +13,7 @@ services:
       - iot
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - ./certs/ca.crt:/mosquitto/ca.crt
+      - ./certs/ca-root-cert.crt:/mosquitto/ca-root-cert.crt
       - ./certs/server.key:/mosquitto/server.key
       - ./certs/server.crt:/mosquitto/server.crt
 
