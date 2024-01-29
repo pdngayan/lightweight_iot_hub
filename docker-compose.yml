@@ -1,21 +1,21 @@
 version: "3"
 
 services:
-  mosquitto:
-    image: eclipse-mosquitto:latest
-    container_name: mosquitto
-    restart: always
-    ports:
-      - "1883:1883"
-      - "8883:8883"
-      - "9001:9001"
-    networks:
-      - iot
-    volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - ./cert/ca-root-cert.crt:/mosquitto/ca-root-cert.crt
-      - ./cert/server.key:/mosquitto/server.key
-      - ./cert/server.crt:/mosquitto/server.crt
+#  mosquitto:
+#    image: eclipse-mosquitto:latest
+#    container_name: mosquitto
+#    restart: always
+#    ports:
+#      - "1883:1883"
+#      - "8883:8883"
+#      - "9001:9001"
+#    networks:
+#      - iot
+#    volumes:
+#      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+#      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+#      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+#      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
 
   influxdb:
     image: influxdb
@@ -32,8 +32,8 @@ services:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=user
       - DOCKER_INFLUXDB_INIT_PASSWORD=password1234
-      - DOCKER_INFLUXDB_INIT_ORG=BRN
-      - DOCKER_INFLUXDB_INIT_BUCKET=BLI
+      - DOCKER_INFLUXDB_INIT_ORG=NCINGA
+      - DOCKER_INFLUXDB_INIT_BUCKET=EPIC
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=4eYvsu8wZCJ6tKuE2sxvFHkvYFwSMVK0011hEEiojvejzpSaij86vYQomN_12au6eK-2MZ6Knr-Sax201y70w==
   
   telegraf:
@@ -42,11 +42,15 @@ services:
     restart: always
     volumes:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
     depends_on:
-      - mosquitto
+#      - mosquitto
       - influxdb
     networks:
       - iot
+
 
   telegraf2:
     image: telegraf
@@ -54,8 +58,11 @@ services:
     restart: always
     volumes:
       - ./telegraf2.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
     depends_on:
-      - mosquitto
+#      - mosquitto
       - influxdb
     networks:
       - iot
@@ -66,8 +73,11 @@ services:
     restart: always
     volumes:
       - ./telegraf3.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
     depends_on:
-      - mosquitto
+#      - mosquitto
       - influxdb
     networks:
       - iot
@@ -83,7 +93,7 @@ services:
     volumes:
       - ./grafana-provisioning:/etc/grafana/provisioning
       - grafana-data:/var/lib/grafana
-      - ./grafana.ini:/etc/grafana/grafana.ini:ro
+#      - ./grafana.ini:/etc/grafana/grafana.ini:ro
     depends_on:
       - influxdb
 
