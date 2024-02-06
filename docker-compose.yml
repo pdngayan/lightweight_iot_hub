@@ -117,7 +117,7 @@ services:
 
   
   grafana:
-    image: grafana/grafana
+    image: pdngayan1/grafana:v1
     container_name: grafana
     restart: always
     ports:
