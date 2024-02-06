@@ -74,7 +74,7 @@ services:
 
   telegraf4:
     image: telegraf
-    container_name: telegraf
+    container_name: telegraf4
     restart: always
     volumes:
       - ./telegrafEpic1.conf:/etc/telegraf/telegraf.conf:ro
@@ -89,7 +89,7 @@ services:
 
   telegraf5:
     image: telegraf
-    container_name: telegraf2
+    container_name: telegraf5
     restart: always
     volumes:
       - ./telegrafEpic2.conf:/etc/telegraf/telegraf.conf:ro
@@ -103,7 +103,7 @@ services:
 
   telegraf6:
     image: telegraf
-    container_name: telegraf3
+    container_name: telegraf6
     restart: always
     volumes:
       - ./telegrafEpic3.conf:/etc/telegraf/telegraf.conf:ro
