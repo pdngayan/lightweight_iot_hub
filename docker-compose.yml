@@ -71,6 +71,50 @@ services:
       - influxdb
     networks:
       - iot
+
+  telegraf4:
+    image: telegraf
+    container_name: telegraf
+    restart: always
+    volumes:
+      - ./telegrafEpic1.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+
+  telegraf5:
+    image: telegraf
+    container_name: telegraf2
+    restart: always
+    volumes:
+      - ./telegrafEpic2.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+  telegraf6:
+    image: telegraf
+    container_name: telegraf3
+    restart: always
+    volumes:
+      - ./telegrafEpic3.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
   
   grafana:
     image: grafana/grafana
