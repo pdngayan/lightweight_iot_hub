@@ -746,8 +746,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -766,6 +765,13 @@
         "y": 4
       },
       "id": 56,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21/epic-steam?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2900,7 +2906,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3371,7 +3378,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3667,6 +3675,6 @@
   "timezone": "",
   "title": "EPIC_Overall",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e99",
-  "version": 76,
+  "version": 77,
   "weekStart": ""
 }
