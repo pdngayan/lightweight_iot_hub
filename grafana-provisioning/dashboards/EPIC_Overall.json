@@ -417,6 +417,13 @@
             "mode": "continuous-RdYlGr"
           },
           "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "aaa",
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+            }
+          ],
           "mappings": [
             {
               "options": {
@@ -467,6 +474,13 @@
         "y": 1
       },
       "id": 20,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -556,6 +570,13 @@
         "y": 1
       },
       "id": 21,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -688,7 +709,7 @@
           "mappings": [
             {
               "options": {
-                "from": 1,
+                "from": 0,
                 "result": {
                   "color": "green",
                   "index": 0
@@ -696,6 +717,28 @@
                 "to": 5000
               },
               "type": "range"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Not Running"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Not Running"
+                }
+              },
+              "type": "special"
             }
           ],
           "min": 0,
@@ -790,6 +833,13 @@
         "y": 4
       },
       "id": 24,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "details",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -879,6 +929,13 @@
         "y": 4
       },
       "id": 25,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -944,6 +1001,13 @@
         "y": 4
       },
       "id": 7,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1013,6 +1077,13 @@
         "y": 4
       },
       "id": 9,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1250,6 +1321,13 @@
         "y": 7
       },
       "id": 27,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1339,6 +1417,13 @@
         "y": 7
       },
       "id": 28,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1472,6 +1557,13 @@
         "y": 8
       },
       "id": 8,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1538,6 +1630,13 @@
         "y": 8
       },
       "id": 10,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1604,6 +1703,13 @@
         "y": 8
       },
       "id": 11,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1670,6 +1776,13 @@
         "y": 8
       },
       "id": 12,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1736,6 +1849,13 @@
         "y": 8
       },
       "id": 13,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1890,6 +2010,13 @@
         "y": 10
       },
       "id": 30,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1979,6 +2106,13 @@
         "y": 10
       },
       "id": 70,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2234,6 +2368,13 @@
         "y": 12
       },
       "id": 14,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -2300,6 +2441,13 @@
         "y": 12
       },
       "id": 16,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -2366,6 +2514,13 @@
         "y": 12
       },
       "id": 17,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -2432,6 +2587,13 @@
         "y": 12
       },
       "id": 18,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -2498,6 +2660,13 @@
         "y": 12
       },
       "id": 19,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+        }
+      ],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -2563,6 +2732,13 @@
         "y": 13
       },
       "id": 34,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2652,6 +2828,13 @@
         "y": 13
       },
       "id": 35,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2717,8 +2900,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2891,7 +3073,30 @@
             "mode": "continuous-RdYlGr"
           },
           "fieldMinMax": false,
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Not Running"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Not Running"
+                }
+              },
+              "type": "special"
+            }
+          ],
           "max": 200,
           "min": 0,
           "thresholds": {
@@ -2984,6 +3189,13 @@
         "y": 16
       },
       "id": 39,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3006,7 +3218,7 @@
             "type": "influxdb",
             "uid": "P5697886F9CA74929"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"P\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305090/tx\" and r[\"power_analyze\"] ==\"comp7\" ))\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])",
+          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"P\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305090/tx\" and r[\"power_analyze\"] ==\"comp6\" ))\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -3073,6 +3285,13 @@
         "y": 16
       },
       "id": 40,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3095,7 +3314,7 @@
             "type": "influxdb",
             "uid": "P5697886F9CA74929"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"T\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305090/tx\" and r[\"power_analyze\"] ==\"comp7\" ))\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])",
+          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"T\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305090/tx\" and r[\"power_analyze\"] ==\"comp6\" ))\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -3152,8 +3371,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3326,6 +3544,13 @@
         "y": 19
       },
       "id": 36,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3348,7 +3573,7 @@
             "type": "influxdb",
             "uid": "P5697886F9CA74929"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"P\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305090/tx\" and r[\"power_analyze\"] ==\"comp6\" ))\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])",
+          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"P\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305090/tx\" and r[\"power_analyze\"] ==\"comp7\" ))\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -3392,6 +3617,13 @@
         "y": 19
       },
       "id": 37,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3414,7 +3646,7 @@
             "type": "influxdb",
             "uid": "P5697886F9CA74929"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"T\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305090/tx\" and r[\"power_analyze\"] ==\"comp6\" ))\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])",
+          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"T\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305090/tx\" and r[\"power_analyze\"] ==\"comp7\" ))\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -3435,6 +3667,6 @@
   "timezone": "",
   "title": "EPIC_Overall",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e99",
-  "version": 66,
+  "version": 76,
   "weekStart": ""
 }
