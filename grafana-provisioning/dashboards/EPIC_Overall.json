@@ -1496,6 +1496,13 @@
         "y": 8
       },
       "id": 61,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2218,6 +2225,13 @@
         "y": 12
       },
       "id": 48,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3130,6 +3144,13 @@
         "y": 16
       },
       "id": 51,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=1"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3675,6 +3696,6 @@
   "timezone": "",
   "title": "EPIC_Overall",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e99",
-  "version": 77,
+  "version": 78,
   "weekStart": ""
 }
