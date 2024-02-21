@@ -30,7 +30,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#6e23a9",
+            "fixedColor": "red",
             "mode": "fixed"
           },
           "displayName": "Steam Meter - Boiler 1",
@@ -119,7 +119,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#6e23a9",
+            "fixedColor": "red",
             "mode": "fixed"
           },
           "displayName": "Steam Meter - Boiler 3",
@@ -458,7 +458,7 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "color": "yellow",
+                  "color": "green",
                   "index": 1,
                   "text": "0.0"
                 }
@@ -469,7 +469,7 @@
               "options": {
                 "match": "empty",
                 "result": {
-                  "color": "yellow",
+                  "color": "green",
                   "index": 2,
                   "text": "0.0"
                 }
@@ -790,7 +790,7 @@
               "options": {
                 "match": "null",
                 "result": {
-                  "color": "yellow",
+                  "color": "green",
                   "index": 1,
                   "text": "0.0"
                 }
@@ -801,7 +801,7 @@
               "options": {
                 "match": "empty",
                 "result": {
-                  "color": "yellow",
+                  "color": "green",
                   "index": 2,
                   "text": "0.0"
                 }
@@ -958,7 +958,23 @@
           },
           "unit": "kg/h"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 6,
@@ -995,6 +1011,7 @@
       ],
       "title": "Daily Flow Rate",
       "transformations": [],
+      "transparent": true,
       "type": "timeseries"
     },
     {
@@ -1144,10 +1161,11 @@
               "options": {
                 "from": 0,
                 "result": {
-                  "color": "green",
-                  "index": 0
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Not Running"
                 },
-                "to": 5000
+                "to": 0
               },
               "type": "range"
             },
@@ -1181,10 +1199,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -1200,8 +1214,9 @@
       },
       "id": 71,
       "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -1210,8 +1225,8 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "textMode": "auto",
+        "wideLayout": true
       },
       "pluginVersion": "10.2.1",
       "targets": [
@@ -1224,9 +1239,9 @@
           "refId": "A"
         }
       ],
-      "title": "Daily Flow Rate",
+      "title": "Current Flow Rate",
       "transformations": [],
-      "type": "gauge"
+      "type": "stat"
     },
     {
       "datasource": {
@@ -1245,10 +1260,11 @@
               "options": {
                 "from": 0,
                 "result": {
-                  "color": "green",
-                  "index": 0
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Not Running"
                 },
-                "to": 5000
+                "to": 0
               },
               "type": "range"
             },
@@ -1282,10 +1298,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -1301,8 +1313,9 @@
       },
       "id": 73,
       "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -1311,8 +1324,8 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "textMode": "auto",
+        "wideLayout": true
       },
       "pluginVersion": "10.2.1",
       "targets": [
@@ -1325,9 +1338,9 @@
           "refId": "A"
         }
       ],
-      "title": "Daily Flow Rate",
+      "title": "Current Flow Rate",
       "transformations": [],
-      "type": "gauge"
+      "type": "stat"
     }
   ],
   "refresh": "",
@@ -1344,6 +1357,6 @@
   "timezone": "",
   "title": "EPIC_Steam",
   "uid": "bdaa5bea-518b-4302-82e6-fa8a73ca1d21",
-  "version": 15,
+  "version": 17,
   "weekStart": ""
 }
