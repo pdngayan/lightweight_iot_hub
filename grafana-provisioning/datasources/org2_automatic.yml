@@ -1,9 +1,10 @@
 apiVersion: 1
 
 datasources:
-  - name: InfluxDB_v2_Flux
+  - name: InfluxDB_v2_Flux_EPIC
     type: influxdb
     access: proxy
+    orgId: 2
     url: http://influxdb:8086
     jsonData:
       version: Flux
