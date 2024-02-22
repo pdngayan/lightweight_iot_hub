@@ -170,6 +170,10 @@ services:
       DEBUG: 'true'
       DEBUG_PORT: '*:8787'
       KC_FEATURES: preview
+      PROXY_ADDRESS_FORWARDING: "true"
+      KC_PROXY: edge
+      KC_HTTP_ENABLED: "true"
+      KC_HTTP_RELATIVE_PATH: "/"
 
     volumes:
       - kc_data:/opt/keycloak/data
