@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 43,
+  "id": 54,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1011,7 +1011,6 @@
       ],
       "title": "Daily Flow Rate",
       "transformations": [],
-      "transparent": true,
       "type": "timeseries"
     },
     {
@@ -1355,8 +1354,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "EPIC_Steam",
+  "title": "Steam Flow Meter",
   "uid": "bdaa5bea-518b-4302-82e6-fa8a73ca1d21",
-  "version": 17,
+  "version": 7,
   "weekStart": ""
 }

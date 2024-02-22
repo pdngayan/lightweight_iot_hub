@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 38,
+  "id": 51,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -41,7 +41,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "\n\n<a href=\"https://www.ncinga.net\" style=\"float:right;width:42px;height:42px;\">\n\t\t\t<img src=\"https://storage.googleapis.com/ncinga-iot-bucket/NCINGA_EPIC.jpeg\" alt=\"\">\n\t</a>\n",
+        "content": "\n\n",
         "mode": "markdown"
       },
       "pluginVersion": "10.2.1",
@@ -426,6 +426,11 @@
               "targetBlank": true,
               "title": "aaa",
               "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+            },
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
             }
           ],
           "mappings": [
@@ -474,13 +479,7 @@
         "y": 1
       },
       "id": 20,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -522,6 +521,13 @@
           },
           "decimals": 0,
           "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
+            }
+          ],
           "mappings": [
             {
               "options": {
@@ -581,13 +587,7 @@
         "y": 1
       },
       "id": 21,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -721,7 +721,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
             }
           ],
           "mappings": [],
@@ -750,13 +750,7 @@
         "y": 4
       },
       "id": 24,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "details",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -797,13 +791,7 @@
           },
           "decimals": 0,
           "fieldMinMax": false,
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-            }
-          ],
+          "links": [],
           "mappings": [
             {
               "options": {
@@ -854,13 +842,7 @@
         "y": 4
       },
       "id": 25,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -903,7 +885,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=2"
             }
           ],
           "mappings": [],
@@ -933,13 +915,7 @@
         "y": 4
       },
       "id": 7,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -982,6 +958,13 @@
             "neutral": 0
           },
           "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=2&var-power_analyser=gG2"
+            }
+          ],
           "mappings": [],
           "max": 1000,
           "min": 0,
@@ -1009,13 +992,7 @@
         "y": 4
       },
       "id": 9,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1175,7 +1152,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21/epic-steam?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21/epic-steam?orgId=2"
             }
           ],
           "mappings": [
@@ -1242,7 +1219,7 @@
         {
           "targetBlank": true,
           "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21/epic-steam?orgId=1"
+          "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21/epic-steam?orgId=2"
         }
       ],
       "options": {
@@ -1380,10 +1357,22 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
             }
           ],
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "green",
+                  "index": 1
+                },
+                "to": 10
+              },
+              "type": "range"
+            }
+          ],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -1409,13 +1398,7 @@
         "y": 7
       },
       "id": 27,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1459,7 +1442,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
             }
           ],
           "mappings": [
@@ -1512,13 +1495,7 @@
         "y": 7
       },
       "id": 28,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1562,7 +1539,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=2&var-power_analyser=mreb"
             }
           ],
           "mappings": [],
@@ -1592,13 +1569,7 @@
         "y": 8
       },
       "id": 8,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1638,6 +1609,13 @@
             "mode": "thresholds"
           },
           "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=2&var-power_analyser=wmdb1"
+            }
+          ],
           "mappings": [],
           "max": 1,
           "min": 0,
@@ -1665,13 +1643,7 @@
         "y": 8
       },
       "id": 10,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1&var-power_analyser=wmdb1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1711,6 +1683,13 @@
             "mode": "thresholds"
           },
           "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=2&var-power_analyser=wmdb2"
+            }
+          ],
           "mappings": [],
           "max": 2,
           "min": 0,
@@ -1738,13 +1717,7 @@
         "y": 8
       },
       "id": 11,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1784,6 +1757,13 @@
             "mode": "thresholds"
           },
           "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=2&var-power_analyser=wrnfr"
+            }
+          ],
           "mappings": [],
           "max": 1,
           "min": 0,
@@ -1811,13 +1791,7 @@
         "y": 8
       },
       "id": 12,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1884,13 +1858,7 @@
         "y": 8
       },
       "id": 13,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -1935,7 +1903,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=2"
             }
           ],
           "mappings": [
@@ -2118,7 +2086,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
             }
           ],
           "mappings": [],
@@ -2147,13 +2115,7 @@
         "y": 10
       },
       "id": 30,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2197,7 +2159,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
             }
           ],
           "mappings": [
@@ -2250,13 +2212,7 @@
         "y": 10
       },
       "id": 70,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2385,6 +2341,13 @@
             "mode": "thresholds"
           },
           "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=2&var-power_analyser=sfsu2"
+            }
+          ],
           "mappings": [],
           "max": 1,
           "min": 0,
@@ -2412,13 +2375,7 @@
         "y": 12
       },
       "id": 14,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -2458,6 +2415,13 @@
             "mode": "thresholds"
           },
           "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=2&var-power_analyser=sewu3"
+            }
+          ],
           "mappings": [],
           "max": 1,
           "min": 0,
@@ -2485,13 +2449,7 @@
         "y": 12
       },
       "id": 16,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -2604,6 +2562,13 @@
             "mode": "thresholds"
           },
           "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=2&var-power_analyser=mezz"
+            }
+          ],
           "mappings": [],
           "max": 1,
           "min": 0,
@@ -2631,13 +2596,7 @@
         "y": 12
       },
       "id": 18,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -2677,6 +2636,13 @@
             "mode": "thresholds"
           },
           "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=2&var-power_analyser=tffu2"
+            }
+          ],
           "mappings": [
             {
               "options": {
@@ -2716,13 +2682,7 @@
         "y": 12
       },
       "id": 19,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -2766,7 +2726,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=2"
             }
           ],
           "mappings": [
@@ -2829,13 +2789,7 @@
         "y": 13
       },
       "id": 48,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2881,7 +2835,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
             }
           ],
           "mappings": [],
@@ -2910,13 +2864,7 @@
         "y": 13
       },
       "id": 34,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2960,7 +2908,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
             }
           ],
           "mappings": [
@@ -3009,13 +2957,7 @@
         "y": 13
       },
       "id": 35,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3588,9 +3530,8 @@
           "fieldMinMax": false,
           "links": [
             {
-              "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=2"
             }
           ],
           "mappings": [
@@ -3654,13 +3595,7 @@
         "y": 17
       },
       "id": 51,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/epic-water?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3796,7 +3731,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
             }
           ],
           "mappings": [],
@@ -3826,13 +3761,7 @@
         "y": 19
       },
       "id": 36,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
-        }
-      ],
+      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3876,7 +3805,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/epic-compressors?orgId=2"
             }
           ],
           "mappings": [
@@ -3985,8 +3914,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "EPIC_Overall",
+  "title": "Landing Page",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e99",
-  "version": 106,
+  "version": 42,
   "weekStart": ""
 }

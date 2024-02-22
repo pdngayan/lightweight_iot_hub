@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 42,
+  "id": 52,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1238,11 +1238,16 @@
           },
           {
             "selected": false,
+            "text": "Old ETP - MDB 1",
+            "value": "etp"
+          },
+          {
+            "selected": false,
             "text": "",
             "value": ""
           }
         ],
-        "query": "Gas Generator 1 : gasgen1, Gas Generator 2 : gG2, Diesel Generator 1 : digen1, Diesel Generator 2 : dg2, REB 1 : reb1, REB 2 : reb2, Main REB : mreb, Sewing Unit 1- MDB 7 : ffsu1, Sewing Unit 2 - MDB 8 : sfsu2, Sewing Unit 3 - DB 7 : sewu3, Washing MDB 3 : wmdb1, Washing MDB 4 : wmdb2, Wrinkle Free - MDB 5 : wrnfr, Finishing Unit 1 - MDB 6 : mezz, Finishing Unit 2 - MDB 9 : tffu2,\n",
+        "query": "Gas Generator 1 : gasgen1, Gas Generator 2 : gG2, Diesel Generator 1 : digen1, Diesel Generator 2 : dg2, REB 1 : reb1, REB 2 : reb2, Main REB : mreb, Sewing Unit 1- MDB 7 : ffsu1, Sewing Unit 2 - MDB 8 : sfsu2, Sewing Unit 3 - DB 7 : sewu3, Washing MDB 3 : wmdb1, Washing MDB 4 : wmdb2, Wrinkle Free - MDB 5 : wrnfr, Finishing Unit 1 - MDB 6 : mezz, Finishing Unit 2 - MDB 9 : tffu2, Old ETP - MDB 1 : etp,\n",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -1255,8 +1260,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "EPIC_Energy",
+  "title": "Power Analyzer",
   "uid": "fe2a78f3-a70b-40c2-8479-d62b0eb769a6",
-  "version": 53,
+  "version": 12,
   "weekStart": ""
 }

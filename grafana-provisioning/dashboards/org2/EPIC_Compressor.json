@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 39,
+  "id": 53,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -3232,8 +3232,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "EPIC_Compressors",
+  "title": "Compressor",
   "uid": "ec59cf43-a25e-4403-9460-ef2d5296e677",
-  "version": 18,
+  "version": 4,
   "weekStart": ""
 }
