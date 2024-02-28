@@ -4183,32 +4183,7 @@
   "schemaVersion": 38,
   "tags": [],
   "templating": {
-    "list": [
-      {
-        "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "definition": "",
-        "hide": 0,
-        "includeAll": false,
-        "multi": false,
-        "name": "query1",
-        "options": [],
-        "query": "",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      }
-    ]
+    "list": []
   },
   "time": {
     "from": "now/d",
@@ -4218,6 +4193,6 @@
   "timezone": "",
   "title": "Landing Page",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e99",
-  "version": 64,
+  "version": 68,
   "weekStart": ""
 }
