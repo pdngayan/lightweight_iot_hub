@@ -1102,6 +1102,21 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "elec"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
           }
         ]
       },
@@ -1117,7 +1132,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "timezone": [
           "Asia/Dhaka"
@@ -1157,6 +1172,6 @@
   "timezone": "",
   "title": "Steam Flow Meter",
   "uid": "bdaa5bea-518b-4302-82e6-fa8a73ca1d21",
-  "version": 18,
+  "version": 23,
   "weekStart": ""
 }
