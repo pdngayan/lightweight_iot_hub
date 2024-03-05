@@ -2181,10 +2181,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -2323,7 +2319,23 @@
           },
           "unit": "m3/h"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -2478,6 +2490,6 @@
   "timezone": "",
   "title": "Water Flow Meter",
   "uid": "ae277448-653a-463c-989c-f08ccb7fe613",
-  "version": 22,
+  "version": 24,
   "weekStart": ""
 }
