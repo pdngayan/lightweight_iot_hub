@@ -446,7 +446,7 @@
                 "value": null
               },
               {
-                "color": "semi-dark-red",
+                "color": "dark-red",
                 "value": 80
               }
             ]
@@ -510,7 +510,42 @@
               "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/power-analyzer?orgId=2&var-power_analyser=etp"
             }
           ],
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Power Off"
+                },
+                "to": 0
+              },
+              "type": "range"
+            }
+          ],
           "max": 1500,
           "min": 0,
           "thresholds": {
@@ -521,7 +556,7 @@
                 "value": null
               },
               {
-                "color": "red",
+                "color": "dark-red",
                 "value": 80
               }
             ]
@@ -2379,10 +2414,11 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#00bbde",
+            "fixedColor": "green",
             "mode": "fixed"
           },
           "decimals": 1,
+          "fieldMinMax": false,
           "links": [
             {
               "targetBlank": true,
@@ -2404,7 +2440,7 @@
               }
             ]
           },
-          "unit": "t CO2"
+          "unit": "t-CO2 (eq)"
         },
         "overrides": []
       },
@@ -2415,9 +2451,15 @@
         "y": 12
       },
       "id": 82,
-      "links": [],
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "",
+          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e679/sustainability-dashboard?orgId=2"
+        }
+      ],
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -3136,13 +3178,7 @@
         "y": 19
       },
       "id": 86,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ec59cf43-a25e-4403-9460-ef2d5296e677/compressor?orgId=2"
-        }
-      ],
+      "links": [],
       "options": {
         "code": {
           "language": "html",
@@ -3791,6 +3827,6 @@
   "timezone": "",
   "title": "Landing Page 2",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e992",
-  "version": 57,
+  "version": 73,
   "weekStart": ""
 }
