@@ -4186,12 +4186,12 @@
   },
   "time": {
     "from": "now/d",
-    "to": "now/d"
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Landing Page",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e99",
-  "version": 86,
+  "version": 87,
   "weekStart": ""
 }

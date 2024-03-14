@@ -690,7 +690,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/epic-energy?orgId=1"
+              "url": "https://iot.ncinga.net/grafana/d/fe2a78f3-a70b-40c2-8479-d62b0eb769a6/power-analyzer?orgId=2&var-power_analyser=ffsu1"
             }
           ],
           "mappings": [],
@@ -2549,9 +2549,9 @@
               "name": "Element 2",
               "placement": {
                 "height": 50,
-                "left": -57,
-                "top": -3,
-                "width": 215
+                "left": -78,
+                "top": -3.0029296875,
+                "width": 235
               },
               "type": "text"
             }
@@ -3915,12 +3915,12 @@
   },
   "time": {
     "from": "now/d",
-    "to": "now/d"
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Landing Page 2",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e992",
-  "version": 87,
+  "version": 90,
   "weekStart": ""
 }
