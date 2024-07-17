@@ -25,7 +25,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
@@ -79,7 +79,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
           "query": "",
           "refId": "A"
@@ -87,19 +87,19 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
           "hide": false,
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"gG1\") or  r[\"power_analyze\"]==\"gG2\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"gG1\") or  r[\"power_analyze\"]==\"gG2\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n",
           "refId": "B"
         },
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
           "hide": false,
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"digen1\") or r[\"power_analyze\"]==\"digen2\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"digen1\") or r[\"power_analyze\"]==\"digen2\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n",
           "refId": "C"
         }
       ],
@@ -114,7 +114,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
@@ -168,7 +168,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
           "query": "",
           "refId": "A"
@@ -176,19 +176,19 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
           "hide": false,
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"gG1\") or  r[\"power_analyze\"]==\"gG2\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"gG1\") or  r[\"power_analyze\"]==\"gG2\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n",
           "refId": "B"
         },
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
           "hide": false,
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"digen1\") or r[\"power_analyze\"]==\"digen2\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"digen1\") or r[\"power_analyze\"]==\"digen2\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n",
           "refId": "C"
         }
       ],
@@ -203,7 +203,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
@@ -292,9 +292,9 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))\n  |> sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -305,7 +305,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
@@ -422,9 +422,9 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))",
           "refId": "A"
         }
       ],
@@ -435,7 +435,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
@@ -523,9 +523,9 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305084/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305084/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))\n  |> sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -536,7 +536,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
@@ -653,9 +653,9 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305084/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305084/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))",
           "refId": "A"
         }
       ],
@@ -666,7 +666,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
@@ -753,9 +753,9 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |>last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |>last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n",
           "refId": "A"
         }
       ],
@@ -766,7 +766,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
@@ -883,9 +883,9 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
           "refId": "A"
         }
       ],
@@ -896,7 +896,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
@@ -983,9 +983,9 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305084/tx\"  ))\n  |> last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305084/tx\"  ))\n  |> last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n",
           "refId": "A"
         }
       ],
@@ -996,7 +996,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
@@ -1147,9 +1147,9 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+            "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305084/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
+          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305084/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
           "refId": "A"
         }
       ],
@@ -1168,10 +1168,10 @@
     "from": "now/d",
     "to": "now/d"
   },
-  "timepicker": {},
+  "timAKH-AKDLker": {},
   "timezone": "",
   "title": "Steam Flow Meter",
-  "uid": "bdaa5bea-518b-4302-82e6-fa8a73ca1d21",
+  "uid": "bdaa5bea-518b-4302-82e6-fa8a73ca1d211",
   "version": 25,
   "weekStart": ""
 }

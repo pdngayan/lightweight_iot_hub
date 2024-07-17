@@ -1,0 +1,14 @@
+apiVersion: 1
+
+providers:
+  - name: 'AKH-AKDL'
+    orgId: 3
+    folder: 'AKH-AKDL'
+    folderUid: ''
+    type: file
+    disableDeletion: true
+    editable: true
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/org3

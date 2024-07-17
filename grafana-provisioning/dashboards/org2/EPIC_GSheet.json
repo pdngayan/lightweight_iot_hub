@@ -1,0 +1,140 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 70,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-googlesheets-datasource",
+        "uid": "b8c4883b-cb85-4b0b-8e8a-8470fffb7388"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "grafana-googlesheets-datasource",
+            "uid": "b8c4883b-cb85-4b0b-8e8a-8470fffb7388"
+          },
+          "range": "",
+          "refId": "A",
+          "spreadsheet": "1BFHSSMjR4iNc0Bdo60mt3pwncpbkabRpJfctx8_muJY",
+          "useTimeFilter": false
+        }
+      ],
+      "title": "Panel Title",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Date": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Enter average consumption - type 1": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              },
+              "Enter average consumption - type 2": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              },
+              "Enter average consumption - type 3": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        }
+      ],
+      "type": "bargauge"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now/d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Test",
+  "uid": "d39203af-f538-43e0-a01e-a8d5f08c265b",
+  "version": 6,
+  "weekStart": ""
+}

@@ -197,4 +197,21 @@ new_metric = {
 
 grafana-cli plugins install grafana-googlesheets-datasource
 
+google sheet jwt data
+---------------------
+ncinga-reseller-incubator
+epic-grafana-email-access@ncinga-reseller-incubator.iam.gserviceaccount.com
+https://oauth2.googleapis.com/token
 
+
+2024/BB/339
+2024/BB/325
+2024/BB/284
+"2024/BB/269",
+"2024/BB/320",
+"2024/BB/255",--
+"2024/BB/274",
+"2024/BB/331",
+"2024/BB/222",--
+"2024/BB/256",
+"2024/BB/298"
