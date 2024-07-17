@@ -194,3 +194,7 @@ new_metric = {
     return metric
 '''
 
+
+grafana-cli plugins install grafana-googlesheets-datasource
+
+
