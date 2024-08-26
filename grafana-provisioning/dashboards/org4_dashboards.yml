@@ -1,0 +1,14 @@
+apiVersion: 1
+
+providers:
+  - name: 'URMI'
+    orgId: 4
+    folder: 'URMI'
+    folderUid: ''
+    type: file
+    disableDeletion: true
+    editable: true
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/org4
