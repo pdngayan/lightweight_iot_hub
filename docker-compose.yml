@@ -142,6 +142,20 @@ services:
     networks:
       - iot
 
+  telegraf9:
+    image: telegraf
+    container_name: telegraf9
+    restart: always
+    volumes:
+      - ./telegrafAKH2.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
+      - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
+      - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
   
   grafana:
     image: pdngayan1/grafana:v1
