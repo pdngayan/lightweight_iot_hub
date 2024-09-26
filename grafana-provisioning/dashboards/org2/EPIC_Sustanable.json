@@ -764,13 +764,13 @@
     "list": []
   },
   "time": {
-    "from": "now-7d",
-    "to": "now"
+    "from": "now/d",
+    "to": "now/d"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Sustainability Dashboard",
   "uid": "ec59cf43-a25e-4403-9460-ef2d5296e679",
-  "version": 77,
-  "weekStart": ""
+  "version": 80,
+  "weekStart": "saturday"
 }
