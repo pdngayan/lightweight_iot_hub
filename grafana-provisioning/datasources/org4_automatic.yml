@@ -4,7 +4,7 @@ datasources:
   - name: InfluxDB_v2_URMI
     type: influxdb
     access: proxy
-    orgId: 3
+    orgId: 4
     url: http://influxdb:8086
     jsonData:
       version: Flux
