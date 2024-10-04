@@ -27,11 +27,11 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#0c7b94",
+            "fixedColor": "#0c7b9452",
             "mode": "fixed"
           },
           "mappings": [],
-          "noValue": "Dyeing Process Pump 1",
+          "noValue": "Dyeing Process Water Pump 1",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -78,11 +78,11 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#0c7b94",
+            "fixedColor": "#0c7b9452",
             "mode": "fixed"
           },
           "mappings": [],
-          "noValue": "Dyeing Process pump 2",
+          "noValue": "Dyeing Process Water Pump 2",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -135,16 +135,17 @@
             "fixedColor": "green",
             "mode": "thresholds"
           },
+          "decimals": 2,
           "fieldMinMax": false,
           "mappings": [
             {
               "options": {
                 "from": 0,
                 "result": {
-                  "color": "green",
+                  "color": "#ffffff",
                   "index": 0
                 },
-                "to": 5000
+                "to": 7000
               },
               "type": "range"
             },
@@ -185,7 +186,7 @@
               }
             ]
           },
-          "unit": "ton"
+          "unit": "m3"
         },
         "overrides": []
       },
@@ -218,7 +219,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AHK-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305170/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305170/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing1/flow\")\n    |> filter(fn: (r) => r[\"host\"] == \"b4e8152ce659\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -237,32 +238,21 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 80,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -318,7 +308,7 @@
               }
             ]
           },
-          "unit": "ton"
+          "unit": "m3"
         },
         "overrides": []
       },
@@ -330,16 +320,25 @@
       },
       "id": 74,
       "options": {
+        "barRadius": 0,
+        "barWidth": 0.8,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": false
         },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
         "tooltip": {
           "mode": "single",
           "sort": "none"
-        }
+        },
+        "xTickLabelRotation": -90,
+        "xTickLabelSpacing": 0
       },
       "pluginVersion": "10.2.1",
       "targets": [
@@ -348,13 +347,13 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing1/flow\")\n    |> filter(fn: (r) => r[\"host\"] == \"b4e8152ce659\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305170/tx\" ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> aggregateWindow(every: 1h, fn: sum)\n",
           "refId": "A"
         }
       ],
       "title": "Daily Consumption",
       "transformations": [],
-      "type": "timeseries"
+      "type": "barchart"
     },
     {
       "datasource": {
@@ -374,7 +373,7 @@
               "options": {
                 "from": 0,
                 "result": {
-                  "color": "green",
+                  "color": "#ffffff",
                   "index": 0
                 },
                 "to": 5000
@@ -407,16 +406,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#ffffff",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
-          "unit": "ton"
+          "unit": "m3"
         },
         "overrides": []
       },
@@ -449,7 +444,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AHK-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305180/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305180/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing2/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -468,32 +463,21 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 80,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -549,7 +533,7 @@
               }
             ]
           },
-          "unit": "ton"
+          "unit": "m3"
         },
         "overrides": []
       },
@@ -561,16 +545,25 @@
       },
       "id": 76,
       "options": {
+        "barRadius": 0,
+        "barWidth": 0.8,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": false
         },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
         "tooltip": {
           "mode": "single",
           "sort": "none"
-        }
+        },
+        "xTickLabelRotation": -90,
+        "xTickLabelSpacing": 0
       },
       "pluginVersion": "10.2.1",
       "targets": [
@@ -579,13 +572,13 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305084/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing2/flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305180/tx\" ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> aggregateWindow(every: 1h, fn: sum)\n",
           "refId": "A"
         }
       ],
       "title": "Daily Consumption ",
       "transformations": [],
-      "type": "timeseries"
+      "type": "barchart"
     },
     {
       "datasource": {
@@ -598,14 +591,38 @@
             "fixedColor": "green",
             "mode": "thresholds"
           },
+          "decimals": 2,
           "fieldMinMax": false,
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Not Running"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "nan",
+                "result": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Not Running"
+                }
+              },
+              "type": "special"
+            }
+          ],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#ffffff",
                 "value": null
               }
             ]
@@ -623,7 +640,7 @@
       "id": 73,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
@@ -643,7 +660,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AHK-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305170/tx\"))\n  |> last(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305170/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing1/flow_rate\")\n    |> filter(fn: (r) => r[\"host\"] == \"b4e8152ce659\")\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -662,14 +679,14 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 20,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -678,12 +695,15 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "always",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -693,43 +713,7 @@
               "mode": "off"
             }
           },
-          "fieldMinMax": false,
-          "mappings": [
-            {
-              "options": {
-                "from": 0,
-                "result": {
-                  "color": "green",
-                  "index": 0
-                },
-                "to": 5000
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "color": "yellow",
-                  "index": 1,
-                  "text": "Not Running"
-                }
-              },
-              "type": "special"
-            },
-            {
-              "options": {
-                "match": "empty",
-                "result": {
-                  "color": "yellow",
-                  "index": 2,
-                  "text": "Not Running"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "min": 0,
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -743,7 +727,7 @@
               }
             ]
           },
-          "unit": "kg/h"
+          "unit": "m3/h"
         },
         "overrides": []
       },
@@ -757,8 +741,8 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
+          "displayMode": "hidden",
+          "placement": "right",
           "showLegend": false
         },
         "tooltip": {
@@ -773,7 +757,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing1/flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305170/tx\"  ))\n  |> filter(fn: (r) => r[\"host\"] == \"b4e8152ce659\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
           "refId": "A"
         }
       ],
@@ -794,13 +778,48 @@
           },
           "decimals": 1,
           "fieldMinMax": false,
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Meter Idle"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Meter Idle"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Not Running"
+                },
+                "to": 0.99
+              },
+              "type": "range"
+            }
+          ],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#ffffff",
                 "value": null
               }
             ]
@@ -838,7 +857,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AHK-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305180/tx\"))\n  |> last(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305180/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing2/flow_rate\")\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -857,14 +876,14 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 20,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -888,43 +907,7 @@
               "mode": "off"
             }
           },
-          "fieldMinMax": false,
-          "mappings": [
-            {
-              "options": {
-                "from": 0,
-                "result": {
-                  "color": "green",
-                  "index": 0
-                },
-                "to": 5000
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "color": "yellow",
-                  "index": 1,
-                  "text": "Not Running"
-                }
-              },
-              "type": "special"
-            },
-            {
-              "options": {
-                "match": "empty",
-                "result": {
-                  "color": "yellow",
-                  "index": 2,
-                  "text": "Not Running"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "min": 0,
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -938,40 +921,9 @@
               }
             ]
           },
-          "unit": "kg/h"
+          "unit": "m3/h"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "red",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "elec"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -983,13 +935,10 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
         },
-        "timezone": [
-          "Asia/Dhaka"
-        ],
         "tooltip": {
           "mode": "single",
           "sort": "none"
@@ -1002,7 +951,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305084/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing2/flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305180/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
           "refId": "A"
         }
       ],
@@ -1015,11 +964,11 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#0c945a",
+            "fixedColor": "#ea7e225e",
             "mode": "fixed"
           },
           "mappings": [],
-          "noValue": "Boiler Pump 1",
+          "noValue": "Water Pump : Boiler 1",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1066,11 +1015,11 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#0c945a",
+            "fixedColor": "#ea7e225e",
             "mode": "fixed"
           },
           "mappings": [],
-          "noValue": "Boiler Pump 1",
+          "noValue": "Water Pump : Boiler 2",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1123,13 +1072,14 @@
             "fixedColor": "green",
             "mode": "thresholds"
           },
+          "decimals": 2,
           "fieldMinMax": false,
           "mappings": [
             {
               "options": {
                 "from": 0,
                 "result": {
-                  "color": "green",
+                  "color": "#ffffff",
                   "index": 0
                 },
                 "to": 5000
@@ -1164,16 +1114,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#ffffff",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
-          "unit": "ton"
+          "unit": "litre"
         },
         "overrides": []
       },
@@ -1206,7 +1152,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AHK-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305184/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305174/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/stb2/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -1225,32 +1171,21 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 80,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -1306,7 +1241,7 @@
               }
             ]
           },
-          "unit": "ton"
+          "unit": "litre"
         },
         "overrides": []
       },
@@ -1318,16 +1253,25 @@
       },
       "id": 86,
       "options": {
+        "barRadius": 0,
+        "barWidth": 0.8,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": false
         },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
         "tooltip": {
           "mode": "single",
           "sort": "none"
-        }
+        },
+        "xTickLabelRotation": -90,
+        "xTickLabelSpacing": 0
       },
       "pluginVersion": "10.2.1",
       "targets": [
@@ -1336,13 +1280,13 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/stb2/flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305174/tx\" ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> aggregateWindow(every: 1h, fn: sum)\n",
           "refId": "A"
         }
       ],
       "title": "Daily Consumption",
       "transformations": [],
-      "type": "timeseries"
+      "type": "barchart"
     },
     {
       "datasource": {
@@ -1355,13 +1299,14 @@
             "fixedColor": "green",
             "mode": "thresholds"
           },
+          "decimals": 2,
           "fieldMinMax": false,
           "mappings": [
             {
               "options": {
                 "from": 0,
                 "result": {
-                  "color": "green",
+                  "color": "#ffffff",
                   "index": 0
                 },
                 "to": 5000
@@ -1396,16 +1341,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#ffffff",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
-          "unit": "ton"
+          "unit": "litre"
         },
         "overrides": []
       },
@@ -1438,7 +1379,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AHK-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305174/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305184/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/boiler1/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -1457,32 +1398,21 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 80,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -1538,7 +1468,7 @@
               }
             ]
           },
-          "unit": "ton"
+          "unit": "litre"
         },
         "overrides": []
       },
@@ -1550,16 +1480,25 @@
       },
       "id": 89,
       "options": {
+        "barRadius": 0,
+        "barWidth": 0.8,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": false
         },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
         "tooltip": {
           "mode": "single",
           "sort": "none"
-        }
+        },
+        "xTickLabelRotation": -90,
+        "xTickLabelSpacing": 0
       },
       "pluginVersion": "10.2.1",
       "targets": [
@@ -1568,13 +1507,13 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0*1000.0) }))",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/boiler1/flow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305184/tx\" ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> aggregateWindow(every: 1h, fn: sum)\n",
           "refId": "A"
         }
       ],
       "title": "Daily Consumption",
       "transformations": [],
-      "type": "timeseries"
+      "type": "barchart"
     },
     {
       "datasource": {
@@ -1587,20 +1526,43 @@
             "fixedColor": "green",
             "mode": "thresholds"
           },
-          "decimals": 1,
+          "decimals": 2,
           "fieldMinMax": false,
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Not Running"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Not Running"
+                }
+              },
+              "type": "special"
+            }
+          ],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#ffffff",
                 "value": null
               }
             ]
           },
-          "unit": "kg/h"
+          "unit": "L/h"
         },
         "overrides": []
       },
@@ -1633,7 +1595,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AHK-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305184/tx\"))\n  |> last(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305174/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/stb2/flow_rate\")\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -1652,14 +1614,14 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 20,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -1733,7 +1695,7 @@
               }
             ]
           },
-          "unit": "kg/h"
+          "unit": "L/h"
         },
         "overrides": []
       },
@@ -1763,7 +1725,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/stb2/flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305174/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
           "refId": "A"
         }
       ],
@@ -1784,18 +1746,41 @@
           },
           "decimals": 1,
           "fieldMinMax": false,
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Not Running"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "nan",
+                "result": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Not Running"
+                }
+              },
+              "type": "special"
+            }
+          ],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#ffffff",
                 "value": null
               }
             ]
           },
-          "unit": "kg/h"
+          "unit": "L/h"
         },
         "overrides": []
       },
@@ -1808,7 +1793,7 @@
       "id": 92,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
@@ -1817,6 +1802,9 @@
           ],
           "fields": "",
           "values": false
+        },
+        "text": {
+          "titleSize": 3
         },
         "textMode": "auto",
         "wideLayout": true
@@ -1828,7 +1816,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AHK-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305174/tx\"))\n  |> last(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305184/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/boiler1/flow_rate\")\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -1847,14 +1835,14 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 20,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -1928,7 +1916,7 @@
               }
             ]
           },
-          "unit": "kg/h"
+          "unit": "L/h"
         },
         "overrides": []
       },
@@ -1958,7 +1946,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "from(bucket: \"AKH-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"AKH-AKDL\")\n  |> filter(fn: (r) => r[\"_field\"] == \"flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305083/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/boiler1/flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305184/tx\"  ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
           "refId": "A"
         }
       ],
@@ -1971,7 +1959,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#0c7b94",
+            "fixedColor": "#940c704f",
             "mode": "fixed"
           },
           "mappings": [],
@@ -2021,7 +2009,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#0c7b94",
+            "fixedColor": "#940c704f",
             "mode": "fixed"
           },
           "mappings": [],
@@ -2997,6 +2985,6 @@
   "timezone": "",
   "title": "Water Distribution",
   "uid": "bdaa5bea-518b-4302-82e6-fa8a73ca1d2111",
-  "version": 9,
+  "version": 72,
   "weekStart": ""
 }
