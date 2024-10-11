@@ -3,8 +3,6 @@ apiVersion: 1
 providers:
   - name: 'AKH-AKDL'
     orgId: 3
-    folder: 'AKH-AKDL'
-    folderUid: ''
     type: file
     disableDeletion: false
     editable: true
