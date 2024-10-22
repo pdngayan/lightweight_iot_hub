@@ -248,6 +248,7 @@
             "fixedColor": "#044377",
             "mode": "fixed"
           },
+          "decimals": 1,
           "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
@@ -362,7 +363,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"URMI\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"T\")\n  |> last()\n    |> keep(columns: [\"_value\"])\n      |> map(fn: (r) => ({r with _value: r._value + 49.00}))\n\n\n\n",
+          "query": "from(bucket: \"URMI\")\n  |> range(start:-1m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"37T\")\n  |> last()\n    |> keep(columns: [\"_value\"])\n|> map(fn: (r) => ({r with _value: r._value - 444.00}))\n\n\n\n",
           "refId": "A"
         }
       ],
@@ -448,7 +449,7 @@
             "axisLabel": "",
             "axisPlacement": "left",
             "barAlignment": 0,
-            "drawStyle": "line",
+            "drawStyle": "bars",
             "fillOpacity": 20,
             "gradientMode": "scheme",
             "hideFrom": {
@@ -611,7 +612,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"URMI\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"RPM\") \n  |> last()\n\n",
+          "query": "from(bucket: \"URMI\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"39RPM\") \n  |> last(column: \"_value\")\n",
           "refId": "A"
         }
       ],
@@ -629,40 +630,7 @@
             "fixedColor": "#ffffff",
             "mode": "fixed"
           },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "color": "yellow",
-                  "index": 2,
-                  "text": "Power Off"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "color": "yellow",
-                  "index": 0,
-                  "text": "Power off"
-                }
-              },
-              "type": "special"
-            },
-            {
-              "options": {
-                "match": "empty",
-                "result": {
-                  "color": "yellow",
-                  "index": 1,
-                  "text": "Power Off"
-                }
-              },
-              "type": "special"
-            }
-          ],
+          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -706,7 +674,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"V\")\n  |> last()\n    |> keep(columns: [\"_value\"]) \n        |> map(fn: (r) => ({r with _value: r._value / 18.00}))\n",
+          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"43vol\")\n    |> filter(fn: (r) => r[\"utility_type\"] == \"comp\")\n  |> last()\n    |> keep(columns: [\"_value\"])\n          |> map(fn: (r) => ({r with _value: r._value/10.00}))",
           "refId": "A"
         }
       ],
@@ -718,10 +686,11 @@
         "type": "influxdb",
         "uid": "f98000c9-50af-410a-ae8c-026609454752"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#1e8feb",
+            "fixedColor": "dark-orange",
             "mode": "shades"
           },
           "custom": {
@@ -773,7 +742,7 @@
               }
             ]
           },
-          "unit": "pressurembar"
+          "unit": "celsius"
         },
         "overrides": []
       },
@@ -803,11 +772,11 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"P\")\n    |> filter(fn: (r) => r[\"utility_type\"] != \"energy\") \n      |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n|> aggregateWindow(every: 1m, fn: last)\n",
+          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"37T\")\n      |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n|> aggregateWindow(every: 1m, fn: last)\n      |> map(fn: (r) => ({r with _value: r._value - 443.00}))\n",
           "refId": "A"
         }
       ],
-      "title": "Pressure Over the Time",
+      "title": "Temperature Over the Time",
       "type": "timeseries"
     },
     {
@@ -925,7 +894,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"URMI\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> last(column:\"_value\")\n",
+          "query": "from(bucket: \"URMI\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> last(column:\"_value\")\n \n  |",
           "refId": "A"
         }
       ],
@@ -1086,7 +1055,7 @@
         "x": 16,
         "y": 10
       },
-      "id": 94,
+      "id": 100,
       "options": {
         "colorMode": "background_solid",
         "graphMode": "area",
@@ -1109,11 +1078,11 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"RH_H\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"LH_H\")\n  |> last()\n\n",
           "refId": "A"
         }
       ],
-      "title": "Daily Hours Run",
+      "title": "Hours On-Load",
       "type": "stat"
     },
     {
@@ -1221,6 +1190,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 1,
           "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
@@ -1232,7 +1202,7 @@
               }
             ]
           },
-          "unit": "watth"
+          "unit": "kwatth"
         },
         "overrides": []
       },
@@ -1265,7 +1235,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> sum(column: \"_value\")\n\n",
+          "query": "\nstart_of_day = from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> aggregateWindow(every: 1d, fn: first, createEmpty: false)\n  |> rename(columns: {_value: \"start_of_day_value\"})\n  |> keep(columns: [\"_time\", \"start_of_day_value\"])\n\n\nend_of_day = from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> aggregateWindow(every: 1d, fn: last, createEmpty: false)\n  |> rename(columns: {_value: \"end_of_day_value\"})\n  |> keep(columns: [\"_time\", \"end_of_day_value\"])\n\n\njoin(\n  tables: {start: start_of_day, end: end_of_day},\n  on: [\"_time\"]\n)\n  |> map(fn: (r) => ({\n    _time: r._time,\n    daily_consumption: r.end_of_day_value - r.start_of_day_value\n  }))\n  |> yield(name: \"Daily Energy Consumption\")\n",
           "refId": "A"
         }
       ],
@@ -1325,7 +1295,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 8,
+        "w": 7,
         "x": 4,
         "y": 15
       },
@@ -1358,7 +1328,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> difference(nonNegative: true)\n  |> aggregateWindow(every: 1h, fn: sum)\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n\n",
+          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"P\")\n    |> filter(fn: (r) => r[\"utility_type\"] == \"energy\")\n  |> difference(nonNegative: true)\n  |> aggregateWindow(every: 1h, fn: sum)\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n\n",
           "refId": "A"
         }
       ],
@@ -1427,7 +1397,7 @@
       "gridPos": {
         "h": 5,
         "w": 4,
-        "x": 12,
+        "x": 11,
         "y": 15
       },
       "id": 11,
@@ -1526,8 +1496,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 8,
-        "x": 16,
+        "w": 6,
+        "x": 15,
         "y": 15
       },
       "id": 88,
@@ -1556,6 +1526,71 @@
       ],
       "title": "Active Power - Time Analysis",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "f98000c9-50af-410a-ae8c-026609454752"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Hours"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 21,
+        "y": 15
+      },
+      "id": 94,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "valueSize": 50
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"RH_H\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Daily Hours Run",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -1657,7 +1692,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"URMI\")\n  |> range(start: -5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"RPM\")\n  |> last(column:\"_value\")\n\n",
+          "query": "from(bucket: \"URMI\")\n  |> range(start: -5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"39RPM\")\n  |> last(column:\"_value\")\n\n",
           "refId": "A"
         }
       ],
@@ -1696,7 +1731,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 12,
+        "w": 6,
         "x": 4,
         "y": 20
       },
@@ -1714,7 +1749,7 @@
           "values": false
         },
         "text": {
-          "valueSize": 100
+          "valueSize": 50
         },
         "textMode": "value",
         "wideLayout": true
@@ -1733,6 +1768,103 @@
       "title": "Daily Carbon Emission",
       "transformations": [],
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "f98000c9-50af-410a-ae8c-026609454752"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#1e8feb",
+            "mode": "shades"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "pressurembar"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 7,
+        "x": 10,
+        "y": 20
+      },
+      "id": 101,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"P\")\n    |> filter(fn: (r) => r[\"utility_type\"] != \"energy\") \n      |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n|> aggregateWindow(every: 1m, fn: last)\n",
+          "refId": "A"
+        }
+      ],
+      "title": "Pressure Over the Time",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -1817,8 +1949,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 8,
-        "x": 16,
+        "w": 7,
+        "x": 17,
         "y": 20
       },
       "id": 98,
@@ -1841,7 +1973,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"RPM\")\n          |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n|> aggregateWindow(every: 1m, fn: last)\n",
+          "query": "from(bucket: \"URMI\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"URMI\")\n  |> filter(fn: (r) => r[\"_field\"] == \"39RPM\")\n          |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n|> aggregateWindow(every: 1m, fn: last)\n",
           "refId": "A"
         }
       ],
@@ -1863,6 +1995,6 @@
   "timezone": "",
   "title": "Power Analyzer",
   "uid": "fe2a78f3-a70b-40c2-8479-d62b0sdfsdfsdf",
-  "version": 8,
+  "version": 44,
   "weekStart": ""
 }

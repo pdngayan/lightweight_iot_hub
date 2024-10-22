@@ -177,7 +177,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#ffffff",
                 "value": null
               }
             ]
@@ -215,7 +215,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: date.truncate(t: now(), unit: 1d))\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))",
+          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))",
           "refId": "A"
         }
       ],
@@ -345,7 +345,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: date.truncate(t: now(), unit: 1d))\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(every: 1h, fn: sum, createEmpty: false)\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Hourly Consumption (m³)\": r._value\n     }))\n  |> keep(columns: [\"_time\", \"Hourly Consumption (m³)\"])",
+          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(every: 1h, fn: sum, createEmpty: false)\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Hourly Consumption (m³)\": r._value\n     }))\n  |> keep(columns: [\"_time\", \"Hourly Consumption (m³)\"])",
           "refId": "A"
         }
       ],
@@ -405,7 +405,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#ffffff",
                 "value": null
               }
             ]
@@ -443,7 +443,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: date.truncate(t: now(), unit: 1d))\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))",
+          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))",
           "refId": "A"
         }
       ],
@@ -571,7 +571,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: date.truncate(t: now(), unit: 1d))\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(every: 1h, fn: sum, createEmpty: false)\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Hourly Consumption (m³)\": r._value\n     }))\n  |> keep(columns: [\"_time\", \"Hourly Consumption (m³)\"])",
+          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 459.6 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(every: 1h, fn: sum, createEmpty: false)\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Hourly Consumption (m³)\": r._value\n     }))\n  |> keep(columns: [\"_time\", \"Hourly Consumption (m³)\"])",
           "refId": "A"
         }
       ],
@@ -850,7 +850,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -991,7 +991,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: ((r._value - 4.0) / (20.0 - 4.0)) * 204.1\n     }))\n  |> aggregateWindow(\n       every: 1m,\n       fn: mean,\n       createEmpty: false\n     )\n  |> yield(name: \"mean\")",
+          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: ((r._value - 4.0) / (20.0 - 4.0)) * 459.6\n     }))\n  |> aggregateWindow(\n       every: 1m,\n       fn: mean,\n       createEmpty: false\n     )\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
@@ -1140,7 +1140,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: date.truncate(t: now(), unit: 1d))\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))",
+          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))",
           "refId": "A"
         }
       ],
@@ -1268,7 +1268,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: date.truncate(t: now(), unit: 1d))\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(every: 1h, fn: sum, createEmpty: false)\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Hourly Consumption (m³)\": r._value\n     }))\n  |> keep(columns: [\"_time\", \"Hourly Consumption (m³)\"])",
+          "query": "import \"date\"\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 459.6 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(every: 1h, fn: sum, createEmpty: false)\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Hourly Consumption (m³)\": r._value\n     }))\n  |> keep(columns: [\"_time\", \"Hourly Consumption (m³)\"])",
           "refId": "A"
         }
       ],
@@ -1332,7 +1332,7 @@
             "type": "influxdb",
             "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
           },
-          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 459.16\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
+          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 459.6\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
           "refId": "A"
         }
       ],
@@ -1485,6 +1485,6 @@
   "timezone": "",
   "title": "Deep Pump",
   "uid": "bdaa5bea-518b-4302-82e6-fa8a73ca1d211",
-  "version": 91,
+  "version": 100,
   "weekStart": ""
 }

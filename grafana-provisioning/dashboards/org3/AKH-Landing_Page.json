@@ -29,8 +29,8 @@
       },
       "description": "",
       "gridPos": {
-        "h": 4,
-        "w": 4,
+        "h": 5,
+        "w": 5,
         "x": 0,
         "y": 0
       },
@@ -41,7 +41,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "\n\n<a href=\"https://www.ncinga.net\" style=\"float:right,back\">\n      <img src=\"https://storage.googleapis.com/ncinga-iot-bucket/.png\" alt=\"\"style=\"height:125px;\">\n  </a>\n",
+        "content": "\n\n<a href=\"https://www.ncinga.net\" style=\"float:right,back\">\n      <img src=\"https://storage.googleapis.com/ncinga-iot-bucket/akh-logo.png\" alt=\"\"style=\"height:160px;width:400px\">\n  </a>\n",
         "mode": "html"
       },
       "pluginVersion": "10.2.1",
@@ -64,51 +64,63 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#1f5bb4",
+            "fixedColor": "transparent",
             "mode": "fixed"
           },
-          "displayName": "Overall Ground Lifting Water",
+          "decimals": 1,
           "links": [
             {
               "targetBlank": true,
-              "title": "",
-              "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe6131/water-flow-meter-deep-pump?orgId=4&from=1720461600000&to=1720547999999"
-            },
-            {
-              "targetBlank": true,
-              "title": "Deep",
-              "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d211/deep-pump?orgId=4"
+              "title": "ETP Inlet",
+              "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21111/effluent-treatment-plant?orgId=4&refresh=1m"
             }
           ],
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "index": 0,
+                  "text": "IMAGE TO BE SET"
+                },
+                "to": 10000
+              },
+              "type": "range"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#b4a194",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "#EAB839",
+                "value": 0
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 10
               }
             ]
           },
-          "unit": "ton"
+          "unit": "m3"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 5,
-        "x": 4,
+        "h": 20,
+        "w": 14,
+        "x": 5,
         "y": 0
       },
-      "id": 2,
+      "id": 89,
+      "links": [],
       "options": {
         "colorMode": "background",
         "graphMode": "area",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -116,6 +128,9 @@
           ],
           "fields": "",
           "values": false
+        },
+        "text": {
+          "valueSize": 30
         },
         "textMode": "auto",
         "wideLayout": true
@@ -127,11 +142,11 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "reb=from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"mreb\") )\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n\n\n  gas=from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"gasgen1\") or  r[\"power_analyze\"]==\"gG2\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n\ndisal=from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"E\")\n  |> filter(fn: (r) => (r[\"power_analyze\"]==\"digen1\") or r[\"power_analyze\"]==\"digen2\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_time\", \"tag\"])\n  |> sum(column: \"_value\")\n\n\n  union(tables: [reb, gas,disal])\n  |> sum(column: \"_value\")\n",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305149/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpin/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
-      "title": "Overall Ground Lifting Water",
+      "title": "SDG",
       "type": "stat"
     },
     {
@@ -142,10 +157,10 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#0baace52",
-            "mode": "fixed"
+            "fixedColor": "#6c693f",
+            "mode": "shades"
           },
-          "decimals": 1,
+          "decimals": 2,
           "links": [
             {
               "targetBlank": true,
@@ -168,9 +183,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 5,
-        "x": 9,
+        "x": 19,
         "y": 0
       },
       "id": 3,
@@ -196,7 +211,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "dy1=from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305170/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing1/flow\")\n    |> filter(fn: (r) => r[\"host\"] == \"b4e8152ce659\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n\n  dy2=from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305180/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing2/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n    |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> sum(column: \"_value\")\n\n    union(tables: [dy1, dy2])\n  |>sum(column: \"_value\")",
+          "query": "dy1=from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305170/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing1/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n\n  dy2=from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305180/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing2/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n\n    union(tables: [dy1, dy2])\n      |> group(columns: [])  // Ungroup data to remove group keys\n  |>sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -211,10 +226,387 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#ea852d5e",
+            "fixedColor": "#056ca7",
+            "mode": "shades"
+          },
+          "decimals": 2,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Deep",
+              "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d211/deep-pump?orgId=4"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "m3"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 0,
+        "y": 5
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "import \"date\"\n\ndp2 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: if (float(v: r._value) - 4.0 < 0.0) then 0.0 \n              else (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\n\ndp3 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: if (float(v: r._value) - 4.0 < 0.0) then 0.0 \n              else (float(v: r._value) - 4.0) / 16.0 * 459.6 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\n\ndp4 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: if (float(v: r._value) - 4.0 < 0.0) then 0.0 \n              else (float(v: r._value) - 4.0) / 16.0 * 459.6 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\n\nunion(tables: [dp2, dp3, dp4])\n  |> sum(column: \"Total Daily Volume (m³)\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Overall Ground Lifting Water",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
             "mode": "fixed"
           },
           "decimals": 1,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 0,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 1,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "#e6585091",
+                  "index": 2,
+                  "text": "Meter Off"
+                },
+                "to": 0.8
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#b4a194",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m3/h"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 7
+      },
+      "id": 92,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "valueSize": 40
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305170/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing1/flow_rate\")\n  |> last(column: \"_value\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Dyeing Process : Water Pump - 01",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 1,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 0,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 1,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "#e6585091",
+                  "index": 2,
+                  "text": "Meter Off"
+                },
+                "to": 0.8
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#b4a194",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m3/h"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 10
+      },
+      "id": 93,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "valueSize": 40
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305180/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing2/flow_rate\")\n  |> last(column: \"_value\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Dyeing Process : Water Pump - 02",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "shades"
+          },
+          "decimals": 1,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "index": 1,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "#e6585091",
+                  "index": 2,
+                  "text": "Meter Off"
+                },
+                "to": 0.99
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m3/h"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 11
+      },
+      "id": 4,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "valueSize": 40
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 204.1\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "Deep Pump 2",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#663c85a8",
+            "mode": "shades"
+          },
+          "decimals": 2,
           "links": [
             {
               "targetBlank": true,
@@ -232,15 +624,15 @@
               }
             ]
           },
-          "unit": "litre"
+          "unit": "L"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 5,
-        "x": 14,
-        "y": 0
+        "x": 19,
+        "y": 13
       },
       "id": 88,
       "options": {
@@ -265,7 +657,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "b1=from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305174/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/stb2/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n\n  b2=from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305184/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/boiler1/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n\n    union(tables: [b1, b2])\n  |>sum(column: \"_value\")",
+          "query": "b1=from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305174/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/stb2/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n\n  b2=from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305184/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/boiler1/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n\n    union(tables: [b1, b2])\n      |> group(columns: [])  // Ungroup data to remove group keys\n  |>sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -273,14 +665,279 @@
       "type": "stat"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#abd60f45",
+            "fixedColor": "transparent",
             "mode": "fixed"
           },
           "decimals": 1,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "#e6585091",
+                  "index": 1,
+                  "text": "Meter Off"
+                },
+                "to": 0.99
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#b4a194",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m3/h"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 14
+      },
+      "id": 90,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "valueSize": 40
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 459.6\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "Deep Pump 3",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 1,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "#e6585091",
+                  "index": 0,
+                  "text": "Meter Off"
+                },
+                "to": 0.99
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#b4a194",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m3/h"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 17
+      },
+      "id": 91,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "valueSize": 39
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 459.6\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "Deep Pump 4",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 1,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 0,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 1,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "#e6585091",
+                  "index": 2,
+                  "text": "Meter Off"
+                },
+                "to": 0.8
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#b4a194",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m3/h"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 20
+      },
+      "id": 96,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "valueSize": 40
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n    |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpin/flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305149/tx\"  ))\n    |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
+          "refId": "A"
+        }
+      ],
+      "title": "ETP Inlet",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#018694",
+            "mode": "fixed"
+          },
+          "decimals": 2,
           "links": [
             {
               "targetBlank": true,
@@ -307,22 +964,16 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 5,
-        "x": 19,
-        "y": 0
+        "h": 6,
+        "w": 7,
+        "x": 5,
+        "y": 20
       },
-      "id": 4,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21111/effluent-treatment-plant?orgId=4&refresh=1m"
-        }
-      ],
+      "id": 98,
+      "links": [],
       "options": {
         "colorMode": "background",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
@@ -342,7 +993,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305149/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpin/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305149/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpin/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -352,53 +1003,15 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
-      "description": "",
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 0,
-        "y": 4
-      },
-      "id": 84,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/water-flow-meter"
-        }
-      ],
-      "options": {
-        "code": {
-          "language": "html",
-          "showLineNumbers": false,
-          "showMiniMap": false
-        },
-        "content": "\n\n<a href=\"https://iot.ncinga.net/grafana/d/ae277448-653a-463c-989c-f08ccb7fe613/water-flow-meter\" style=\"float:right,back\">\n      <img src=\"https://storage.googleapis.com/ncinga-iot-bucket/outlet.png\" alt=\"\"style=\"height:130px;width:300px\";>\n  </a>\n<h4 style=\"text-align: center;margin-top:10px;font-family:steam-flow-meter?orgId;\"> ETP Outlet </h4>",
-        "mode": "html"
-      },
-      "pluginVersion": "10.2.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
-          },
-          "refId": "A"
-        }
-      ],
-      "type": "text"
-    },
-    {
-      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#0c94597a",
-            "mode": "fixed"
+            "fixedColor": "#f0712299",
+            "mode": "shades"
           },
-          "decimals": 1,
+          "decimals": 2,
           "links": [
             {
               "targetBlank": true,
@@ -425,15 +1038,15 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 5,
-        "x": 19,
-        "y": 8
+        "h": 6,
+        "w": 7,
+        "x": 12,
+        "y": 20
       },
       "id": 80,
       "options": {
         "colorMode": "background",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
@@ -453,7 +1066,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305153/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpmis/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305153/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpmis/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -463,43 +1076,73 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#eb3f054f",
+            "fixedColor": "transparent",
             "mode": "fixed"
           },
           "decimals": 1,
-          "links": [
+          "links": [],
+          "mappings": [
             {
-              "targetBlank": true,
-              "title": "ETP Outlet",
-              "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21111/effluent-treatment-plant?orgId=4&refresh=1m"
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 0,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 1,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "#e6585091",
+                  "index": 2,
+                  "text": "Meter Off"
+                },
+                "to": 0.8
+              },
+              "type": "range"
             }
           ],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#b4a194",
                 "value": null
               }
             ]
           },
-          "unit": "m3"
+          "unit": "L/h"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 3,
         "w": 5,
         "x": 19,
-        "y": 16
+        "y": 20
       },
-      "id": 87,
+      "id": 94,
+      "links": [],
       "options": {
         "colorMode": "background",
         "graphMode": "area",
@@ -512,6 +1155,9 @@
           "fields": "",
           "values": false
         },
+        "text": {
+          "valueSize": 40
+        },
         "textMode": "auto",
         "wideLayout": true
       },
@@ -522,11 +1168,215 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"EPIC\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"customer\"] == \"NCING\")\n  |> filter(fn: (r) => r[\"group\"] == \"EPIC\")\n  |> filter(fn: (r) => r[\"_field\"] == \"totalflow\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305086/tx\" ))\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305174/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/stb2/flow_rate\")\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
-      "title": "ETP Outlet Process Water",
+      "title": "Water Pump : Boiler - 01",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 1,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 0,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 1,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "#e6585091",
+                  "index": 2,
+                  "text": "Meter Off"
+                },
+                "to": 0.8
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#b4a194",
+                "value": null
+              }
+            ]
+          },
+          "unit": "m3/h"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 23
+      },
+      "id": 97,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "valueSize": 40
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305153/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpmis/flow_rate\")\n  |> last(column: \"_value\")",
+          "refId": "A"
+        }
+      ],
+      "title": "ETP Middle",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 1,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 0,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 1,
+                  "text": "Meter Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "#e6585091",
+                  "index": 2,
+                  "text": "Meter Off"
+                },
+                "to": 0.8
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#b4a194",
+                "value": null
+              }
+            ]
+          },
+          "unit": "L/h"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 23
+      },
+      "id": 95,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "valueSize": 40
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305184/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/boiler1/flow_rate\")\n  |> last(column: \"_value\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Water Pump : Boiler - 02",
       "type": "stat"
     }
   ],
@@ -538,12 +1388,12 @@
   },
   "time": {
     "from": "now/d",
-    "to": "now"
+    "to": "now/d"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Landing Page",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e992",
-  "version": 19,
+  "version": 55,
   "weekStart": ""
 }

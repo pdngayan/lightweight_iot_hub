@@ -403,6 +403,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 1,
           "mappings": [
             {
               "options": {
@@ -424,7 +425,7 @@
               }
             ]
           },
-          "unit": "amp"
+          "unit": "A"
         },
         "overrides": []
       },
@@ -562,6 +563,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 1,
           "mappings": [
             {
               "options": {
@@ -583,7 +585,7 @@
               }
             ]
           },
-          "unit": "amp"
+          "unit": "A"
         },
         "overrides": []
       },
@@ -828,12 +830,16 @@
       "type": "gauge"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "influxdb",
+        "uid": "d7418bde-8242-4b44-a729-106b7c0ec72a"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 1,
           "mappings": [
             {
               "options": {
@@ -877,7 +883,7 @@
               }
             ]
           },
-          "unit": "watt"
+          "unit": "KW"
         },
         "overrides": []
       },
@@ -909,7 +915,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/P\")\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/P\")\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -1091,7 +1097,7 @@
               }
             ]
           },
-          "unit": "watt"
+          "unit": "kwatt"
         },
         "overrides": []
       },
@@ -1184,7 +1190,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/E\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> sum(column: \"_value\")\n\n",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/E\")\n      |> difference(nonNegative: true)\n  |> sum(column: \"_value\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n\n",
           "refId": "A"
         }
       ],
@@ -1203,7 +1209,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1277,7 +1283,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/E\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> window(every: 1h)\n  |> difference(nonNegative: true)\n  |> sum()\n  |> duplicate(column: \"_stop\", as: \"_time\")\n  |> window(every: inf)\n  |> sort(columns: [\"_time\"])",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/E\")\n    |> difference(nonNegative: true)\n  |> aggregateWindow(every: 1h, fn: sum)",
           "refId": "A"
         }
       ],
@@ -1339,7 +1345,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305142/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/etp/E\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> sum(column: \"_value\")\n\n",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305142/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/etp/E\")\n      |> difference(nonNegative: true)\n  |> sum(column: \"_value\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n\n",
           "refId": "A"
         }
       ],
@@ -1432,224 +1438,13 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305142/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/etp/E\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> window(every: 1h)\n  |> difference(nonNegative: true)\n  |> sum()\n  |> duplicate(column: \"_stop\", as: \"_time\")\n  |> window(every: inf)\n  |> sort(columns: [\"_time\"])",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305142/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/etp/E\")\n    |> difference(nonNegative: true)\n  |> aggregateWindow(every: 1h, fn: sum)",
           "refId": "A"
         }
       ],
       "title": "Daily Overall Consumption",
       "transformations": [],
       "type": "barchart"
-    },
-    {
-      "datasource": {},
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "#1d5a94",
-            "mode": "fixed"
-          },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "color": "dark-red",
-                  "index": 2,
-                  "text": "Machine Off"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "color": "dark-red",
-                  "index": 0,
-                  "text": "Machine Off"
-                }
-              },
-              "type": "special"
-            },
-            {
-              "options": {
-                "match": "empty",
-                "result": {
-                  "color": "dark-red",
-                  "index": 1,
-                  "text": "Machine Off"
-                }
-              },
-              "type": "special"
-            },
-            {
-              "options": {
-                "from": 1,
-                "result": {
-                  "color": "#0b6f95",
-                  "index": 3,
-                  "text": "Machine On"
-                },
-                "to": 3000
-              },
-              "type": "range"
-            }
-          ],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "rotrpm"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 0,
-        "y": 20
-      },
-      "id": 99,
-      "options": {
-        "colorMode": "background_solid",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.2.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
-          },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/i_avg\")\n  |> last(column:\"_value\")\n\n",
-          "refId": "A"
-        }
-      ],
-      "title": "Machine Status",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "d7418bde-8242-4b44-a729-106b7c0ec72a"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "#1d5a94",
-            "mode": "fixed"
-          },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "color": "dark-red",
-                  "index": 2,
-                  "text": "Machine Off"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "color": "dark-red",
-                  "index": 0,
-                  "text": "Machine Off"
-                }
-              },
-              "type": "special"
-            },
-            {
-              "options": {
-                "match": "empty",
-                "result": {
-                  "color": "dark-red",
-                  "index": 1,
-                  "text": "Machine Off"
-                }
-              },
-              "type": "special"
-            },
-            {
-              "options": {
-                "from": 1,
-                "result": {
-                  "color": "#0b6f95",
-                  "index": 3,
-                  "text": "Machine On"
-                },
-                "to": 3000
-              },
-              "type": "range"
-            }
-          ],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "rotrpm"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 12,
-        "y": 20
-      },
-      "id": 111,
-      "options": {
-        "colorMode": "background_solid",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.2.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
-          },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305142/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/etp/i_avg\")\n  |> last(column:\"_value\")\n\n",
-          "refId": "A"
-        }
-      ],
-      "title": "Machine Status",
-      "type": "stat"
     }
   ],
   "refresh": "",
@@ -1666,6 +1461,6 @@
   "timezone": "",
   "title": "Power Analyzer1",
   "uid": "fe2a78f3-a70b-40c2-8479-d62b0sdfsdfsd2",
-  "version": 14,
+  "version": 24,
   "weekStart": ""
 }
