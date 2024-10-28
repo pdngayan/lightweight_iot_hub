@@ -59,81 +59,24 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "transparent",
-            "mode": "fixed"
-          },
-          "decimals": 1,
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "ETP Inlet",
-              "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21111/effluent-treatment-plant?orgId=4&refresh=1m"
-            }
-          ],
-          "mappings": [
-            {
-              "options": {
-                "from": 0,
-                "result": {
-                  "index": 0,
-                  "text": "IMAGE TO BE SET"
-                },
-                "to": 10000
-              },
-              "type": "range"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#b4a194",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 0
-              },
-              {
-                "color": "#6ED0E0",
-                "value": 10
-              }
-            ]
-          },
-          "unit": "m3"
-        },
-        "overrides": []
-      },
+      "description": "",
       "gridPos": {
         "h": 20,
         "w": 14,
         "x": 5,
         "y": 0
       },
-      "id": 89,
-      "links": [],
+      "id": 100,
       "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "code": {
+          "language": "html",
+          "showLineNumbers": false,
+          "showMiniMap": false
         },
-        "text": {
-          "valueSize": 30
-        },
-        "textMode": "auto",
-        "wideLayout": true
+        "content": "\n\n<a href=\"https://www.ncinga.net\" style=\"float:right,back\">\n      <img src=\"https://storage.googleapis.com/ncinga-iot-bucket/akh-logo.png\" alt=\"\"style=\"height:160px;width:400px\">\n  </a>\n",
+        "mode": "html"
       },
       "pluginVersion": "10.2.1",
       "targets": [
@@ -142,12 +85,10 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305149/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpin/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
-      "title": "SDG",
-      "type": "stat"
+      "type": "text"
     },
     {
       "datasource": {
@@ -284,7 +225,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "import \"date\"\n\ndp2 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: if (float(v: r._value) - 4.0 < 0.0) then 0.0 \n              else (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\n\ndp3 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: if (float(v: r._value) - 4.0 < 0.0) then 0.0 \n              else (float(v: r._value) - 4.0) / 16.0 * 459.6 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\n\ndp4 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: if (float(v: r._value) - 4.0 < 0.0) then 0.0 \n              else (float(v: r._value) - 4.0) / 16.0 * 459.6 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\n\nunion(tables: [dp2, dp3, dp4])\n  |> sum(column: \"Total Daily Volume (m³)\")",
+          "query": "import \"date\"\n\ndp2 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\ndp3 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 459.6 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\n\ndp4 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 459.6 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\n\nunion(tables: [dp2, dp3, dp4])\n  |> sum(column: \"Total Daily Volume (m³)\")",
           "refId": "A"
         }
       ],
@@ -1043,7 +984,7 @@
         "x": 12,
         "y": 20
       },
-      "id": 80,
+      "id": 99,
       "options": {
         "colorMode": "background",
         "graphMode": "none",
@@ -1394,6 +1335,6 @@
   "timezone": "",
   "title": "Landing Page",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e992",
-  "version": 55,
+  "version": 57,
   "weekStart": ""
 }
