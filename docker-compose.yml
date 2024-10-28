@@ -175,7 +175,7 @@ services:
     container_name: telegraf11
     restart: always
     volumes:
-      - ./telegrafAKH1.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegrafImpress1.conf:/etc/telegraf/telegraf.conf:ro
       - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
       - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
       - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
@@ -189,7 +189,7 @@ services:
     container_name: telegraf12
     restart: always
     volumes:
-      - ./telegrafAKH1.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegrafImpress2.conf:/etc/telegraf/telegraf.conf:ro
       - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
       - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
       - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
@@ -203,7 +203,7 @@ services:
     container_name: telegraf13
     restart: always
     volumes:
-      - ./telegrafAKH1.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegrafImpress3.conf:/etc/telegraf/telegraf.conf:ro
       - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
       - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
       - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
