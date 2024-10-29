@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 135,
+  "id": 178,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -433,6 +433,105 @@
       "type": "text"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "fieldMinMax": false,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Power Off"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 1000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 4,
+        "y": 5
+      },
+      "id": 17,
+      "links": [],
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/P\")\n  |> last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n",
+          "refId": "A"
+        }
+      ],
+      "title": "Active Power - Gas Generator 1",
+      "type": "gauge"
+    },
+    {
       "datasource": {},
       "fieldConfig": {
         "defaults": {
@@ -494,11 +593,11 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 3,
-        "x": 4,
+        "w": 4,
+        "x": 8,
         "y": 5
       },
-      "id": 17,
+      "id": 100,
       "links": [],
       "options": {
         "minVizHeight": 75,
@@ -525,99 +624,8 @@
           "refId": "A"
         }
       ],
-      "title": "Active Power - Main Desco",
+      "title": "Active Power - Gas Generator 2",
       "type": "gauge"
-    },
-    {
-      "datasource": {},
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
-          "custom": {
-            "axisBorderShow": true,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "bars",
-            "fillOpacity": 90,
-            "gradientMode": "scheme",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 10,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "watth"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 7,
-        "x": 7,
-        "y": 5
-      },
-      "id": 13,
-      "links": [],
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "right",
-          "showLegend": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "10.2.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
-          },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/E\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> window(every: 1h)\n  |> difference(nonNegative: true)\n  |> sum()\n  |> duplicate(column: \"_stop\", as: \"_time\")\n  |> window(every: inf)\n  |> sort(columns: [\"_time\"])",
-          "refId": "A"
-        }
-      ],
-      "title": "Hourly Consumption - KWh",
-      "type": "timeseries"
     },
     {
       "datasource": {},
@@ -627,9 +635,20 @@
             "fixedColor": "green",
             "mode": "thresholds"
           },
+          "decimals": 1,
           "fieldMinMax": false,
           "links": [],
           "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Power Off"
+                }
+              },
+              "type": "value"
+            },
             {
               "options": {
                 "match": "null",
@@ -651,21 +670,9 @@
                 }
               },
               "type": "special"
-            },
-            {
-              "options": {
-                "from": 0,
-                "result": {
-                  "color": "yellow",
-                  "index": 2,
-                  "text": "Power Off"
-                },
-                "to": 0
-              },
-              "type": "range"
             }
           ],
-          "max": 1500,
+          "max": 1000,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -682,11 +689,11 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 3,
-        "x": 14,
+        "w": 4,
+        "x": 12,
         "y": 5
       },
-      "id": 87,
+      "id": 98,
       "links": [],
       "options": {
         "minVizHeight": 75,
@@ -709,92 +716,94 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305142/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/etp/P\")\n  |> last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/P\")\n  |> last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n",
           "refId": "A"
         }
       ],
-      "title": "Active Power - ETP",
+      "title": "Active Power - Gas Generator 3",
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "d7418bde-8242-4b44-a729-106b7c0ec72a"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-GrYlRd"
+            "fixedColor": "green",
+            "mode": "thresholds"
           },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "bars",
-            "fillOpacity": 90,
-            "gradientMode": "scheme",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+          "decimals": 1,
+          "fieldMinMax": false,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Power Off"
+                }
+              },
+              "type": "value"
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
             }
-          },
-          "mappings": [],
+          ],
+          "max": 1000,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
-          "unit": "watth"
+          "unit": "watt"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 7,
-        "w": 7,
-        "x": 17,
+        "w": 4,
+        "x": 16,
         "y": 5
       },
-      "id": 88,
+      "id": 99,
       "links": [],
       "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "right",
-          "showLegend": false
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
       "pluginVersion": "10.2.1",
       "targets": [
@@ -803,12 +812,108 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305142/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/etp/E\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> window(every: 1h)\n  |> difference(nonNegative: true)\n  |> sum()\n  |> duplicate(column: \"_stop\", as: \"_time\")\n  |> window(every: inf)\n  |> sort(columns: [\"_time\"])",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/P\")\n  |> last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n",
           "refId": "A"
         }
       ],
-      "title": "Hourly Consumption - KWh",
-      "type": "timeseries"
+      "title": "Active Power - Main REB 1",
+      "type": "gauge"
+    },
+    {
+      "datasource": {},
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "fieldMinMax": false,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Power Off"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 1000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 20,
+        "y": 5
+      },
+      "id": 97,
+      "links": [],
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305140/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/descomain/P\")\n  |> last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n",
+          "refId": "A"
+        }
+      ],
+      "title": "Active Power - Main REB 2",
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -1014,6 +1119,372 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "fixedColor": "green",
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Power Off"
+                },
+                "to": 0
+              },
+              "type": "range"
+            }
+          ],
+          "max": 1500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 14,
+        "y": 12
+      },
+      "id": 87,
+      "links": [],
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305142/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/etp/P\")\n  |> last()\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n",
+          "refId": "A"
+        }
+      ],
+      "title": "Active Power - ETP",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "d7418bde-8242-4b44-a729-106b7c0ec72a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 90,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 17,
+        "y": 12
+      },
+      "id": 88,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305142/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/elec/main/etp/E\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> window(every: 1h)\n  |> difference(nonNegative: true)\n  |> sum()\n  |> duplicate(column: \"_stop\", as: \"_time\")\n  |> window(every: inf)\n  |> sort(columns: [\"_time\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "Hourly Consumption - KWh",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 15
+      },
+      "id": 84,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "ETP",
+          "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21122/effluent-treatment-plant-etp?orgId=6&refresh=1m"
+        }
+      ],
+      "options": {
+        "code": {
+          "language": "html",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n\n<a href=\"https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21122/effluent-treatment-plant-etp?orgId=6&refresh=1m\" style=\"float:right,back\">\n      <img src=\"https://storage.googleapis.com/ncinga-iot-bucket/outlet.png\" alt=\"\"style=\"height:130px;width:300px\";>\n  </a>\n<h4 style=\"text-align: center;margin-top:10px;font-family:steam-flow-meter?orgId;\"> Effluent Treatment Plant</h4>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "refId": "A"
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "d7418bde-8242-4b44-a729-106b7c0ec72a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "transparent",
+            "mode": "fixed"
+          },
+          "decimals": 1,
+          "fieldMinMax": false,
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "empty",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 0,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "#e6585091",
+                  "index": 1,
+                  "text": "Power Off"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 10,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ton/h"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 19
+      },
+      "id": 95,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "valueSize": 40
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305143/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/stboil/flow_rate\")\n  |> drop(columns: [\"host\"])\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  ",
+          "refId": "A"
+        }
+      ],
+      "title": "Steam Output : 16 Ton Boiler",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 20
+      },
+      "id": 86,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Air Flow",
+          "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d2113/air-flow-meter?orgId=6&refresh=1m"
+        }
+      ],
+      "options": {
+        "code": {
+          "language": "html",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n\n<a href=\"https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d2113/air-flow-meter?orgId=6&refresh=1m\" style=\"float:right,back\">\n      <img src=\"https://storage.googleapis.com/ncinga-iot-bucket/com.jpg\" alt=\"\"style=\"height:130px;width:300px\";>\n  </a>\n<h4 style=\"text-align: center;margin-top:10px;font-family:steam-flow-meter?orgId;\">Air Compressor </h4>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "refId": "A"
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "datasource": {},
+      "fieldConfig": {
+        "defaults": {
+          "color": {
             "fixedColor": "#c6bb22a6",
             "mode": "shades"
           },
@@ -1039,7 +1510,7 @@
         "h": 1,
         "w": 10,
         "x": 14,
-        "y": 12
+        "y": 22
       },
       "id": 81,
       "options": {
@@ -1117,7 +1588,7 @@
         "h": 3,
         "w": 5,
         "x": 14,
-        "y": 13
+        "y": 23
       },
       "id": 20,
       "links": [],
@@ -1210,7 +1681,7 @@
         "h": 3,
         "w": 5,
         "x": 19,
-        "y": 13
+        "y": 23
       },
       "id": 94,
       "links": [],
@@ -1245,47 +1716,6 @@
       ],
       "title": "Air Flow Meter-01",
       "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
-      },
-      "description": "",
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 0,
-        "y": 15
-      },
-      "id": 84,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "ETP",
-          "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21122/effluent-treatment-plant-etp?orgId=6&refresh=1m"
-        }
-      ],
-      "options": {
-        "code": {
-          "language": "html",
-          "showLineNumbers": false,
-          "showMiniMap": false
-        },
-        "content": "\n\n<a href=\"https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d21122/effluent-treatment-plant-etp?orgId=6&refresh=1m\" style=\"float:right,back\">\n      <img src=\"https://storage.googleapis.com/ncinga-iot-bucket/outlet.png\" alt=\"\"style=\"height:130px;width:300px\";>\n  </a>\n<h4 style=\"text-align: center;margin-top:10px;font-family:steam-flow-meter?orgId;\"> Effluent Treatment Plant</h4>",
-        "mode": "html"
-      },
-      "pluginVersion": "10.2.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
-          },
-          "refId": "A"
-        }
-      ],
-      "type": "text"
     },
     {
       "datasource": {
@@ -1331,8 +1761,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "text",
-                "value": null
+                "color": "text"
               }
             ]
           },
@@ -1344,7 +1773,7 @@
         "h": 3,
         "w": 5,
         "x": 14,
-        "y": 16
+        "y": 26
       },
       "id": 90,
       "links": [],
@@ -1424,8 +1853,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1437,9 +1865,9 @@
         "h": 3,
         "w": 5,
         "x": 19,
-        "y": 16
+        "y": 26
       },
-      "id": 95,
+      "id": 96,
       "links": [],
       "options": {
         "colorMode": "background",
@@ -1466,11 +1894,11 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305143/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/stboil/flow_rate\")\n  |> drop(columns: [\"host\"])\n  |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  ",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305144/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/cwlst1/flow_rate\")\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
-      "title": "Steam Output : 16 Ton Boiler",
+      "title": "Steam Distribution : CWL-01",
       "type": "stat"
     },
     {
@@ -1517,8 +1945,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1530,7 +1957,7 @@
         "h": 3,
         "w": 5,
         "x": 14,
-        "y": 19
+        "y": 29
       },
       "id": 89,
       "links": [],
@@ -1610,142 +2037,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "ton/h"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 19,
-        "y": 19
-      },
-      "id": 96,
-      "links": [],
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {
-          "valueSize": 40
-        },
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.2.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
-          },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start:-5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305144/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/cwlst1/flow_rate\")\n  |> last(column: \"_value\")",
-          "refId": "A"
-        }
-      ],
-      "title": "Steam Distribution : CWL-01",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
-      },
-      "description": "",
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 0,
-        "y": 20
-      },
-      "id": 86,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "Air Flow",
-          "url": "https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d2113/air-flow-meter?orgId=6&refresh=1m"
-        }
-      ],
-      "options": {
-        "code": {
-          "language": "html",
-          "showLineNumbers": false,
-          "showMiniMap": false
-        },
-        "content": "\n\n<a href=\"https://iot.ncinga.net/grafana/d/bdaa5bea-518b-4302-82e6-fa8a73ca1d2113/air-flow-meter?orgId=6&refresh=1m\" style=\"float:right,back\">\n      <img src=\"https://storage.googleapis.com/ncinga-iot-bucket/com.jpg\" alt=\"\"style=\"height:130px;width:300px\";>\n  </a>\n<h4 style=\"text-align: center;margin-top:10px;font-family:steam-flow-meter?orgId;\">Air Compressor </h4>",
-        "mode": "html"
-      },
-      "pluginVersion": "10.2.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
-          },
-          "refId": "A"
-        }
-      ],
-      "type": "text"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "d7418bde-8242-4b44-a729-106b7c0ec72a"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "transparent",
-            "mode": "fixed"
-          },
-          "decimals": 1,
-          "fieldMinMax": false,
-          "links": [],
-          "mappings": [
-            {
-              "options": {
-                "match": "empty",
-                "result": {
-                  "color": "#e6585091",
-                  "index": 0,
-                  "text": "Power Off"
-                }
-              },
-              "type": "special"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "color": "#e6585091",
-                  "index": 1,
-                  "text": "Power Off"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "max": 10,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1757,7 +2049,7 @@
         "h": 3,
         "w": 5,
         "x": 14,
-        "y": 22
+        "y": 32
       },
       "id": 93,
       "links": [],
@@ -1808,6 +2100,6 @@
   "timezone": "browser",
   "title": "Landing Page",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e992",
-  "version": 54,
+  "version": 3,
   "weekStart": ""
 }

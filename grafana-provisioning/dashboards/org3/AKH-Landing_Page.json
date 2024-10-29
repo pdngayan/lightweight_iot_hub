@@ -63,7 +63,7 @@
       },
       "description": "",
       "gridPos": {
-        "h": 20,
+        "h": 18,
         "w": 14,
         "x": 5,
         "y": 0
@@ -75,7 +75,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "\n\n<a href=\"https://www.ncinga.net\" style=\"float:right,back\">\n      <img src=\"https://storage.googleapis.com/ncinga-iot-bucket/akh-logo.png\" alt=\"\"style=\"height:160px;width:400px\">\n  </a>\n",
+        "content": "\n\n<a href=\"https://www.ncinga.net\" style=\"float:right,back\">\n      <img src=\"https://storage.googleapis.com/ncinga-iot-bucket/akh-sdg.png\" alt=\"\"style=\"height:658px;width:1600px\">\n  </a>\n",
         "mode": "html"
       },
       "pluginVersion": "10.2.1",
@@ -225,7 +225,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "import \"date\"\n\ndp2 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 204.1 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\ndp3 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 459.6 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\n\ndp4 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: (float(v: r._value) - 4.0) / 16.0 * 459.6 / 1000.0 * 60.0\n     }))\n  |> aggregateWindow(\n       every: 1h,\n       fn: sum,\n       createEmpty: false\n     )\n  |> sum()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Total Daily Volume (m³)\": r._value\n     }))\n\nunion(tables: [dp2, dp3, dp4])\n  |> sum(column: \"Total Daily Volume (m³)\")",
+          "query": "import \"date\"\n\ndp2 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: ((float(v: r._value) - 4.0) / (20.0 - 4.0)) * 204.1/ 60.0 / 1000.0\n     }))\n  |> aggregateWindow(every: 1m, fn: sum)\n  |> sum(column: \"_value\")\n  |> map(fn: (r) => ({ _time: r._time, \"Daily Water Consumption (m³)\": r._value }))\n  |> keep(columns: [\"_time\", \"Daily Water Consumption (m³)\"])\n\n\ndp3 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: ((float(v: r._value) - 4.0) / (20.0 - 4.0)) * 459.6/ 60.0 / 1000.0\n     }))\n  |> aggregateWindow(every: 1m, fn: sum)\n  |> sum(column: \"_value\")\n  |> map(fn: (r) => ({ _time: r._time, \"Daily Water Consumption (m³)\": r._value }))\n  |> keep(columns: [\"_time\", \"Daily Water Consumption (m³)\"])\n\ndp4 = from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> map(fn: (r) => ({\n       _time: r._time,\n       _value: ((float(v: r._value) - 4.0) / (20.0 - 4.0)) * 459.6/ 60.0 / 1000.0\n     }))\n  |> aggregateWindow(every: 1m, fn: sum)\n  |> sum(column: \"_value\")\n  |> map(fn: (r) => ({ _time: r._time, \"Daily Water Consumption (m³)\": r._value }))\n  |> keep(columns: [\"_time\", \"Daily Water Consumption (m³)\"])\n\n\nunion(tables: [dp2,dp3,dp4])\n  |> sum(column: \"Daily Water Consumption (m³)\")",
           "refId": "A"
         }
       ],
@@ -327,7 +327,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305170/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing1/flow_rate\")\n  |> last(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305170/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing1/flow_rate\")\n  |> drop(columns: [\"host\"])\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -429,7 +429,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305180/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing2/flow_rate\")\n  |> last(column: \"_value\")",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305180/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/dyeing2/flow_rate\")\n  |> drop(columns: [\"host\"])\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -529,7 +529,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 204.1\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
+          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/255\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> drop(columns: [\"host\"])\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 204.1\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
           "refId": "A"
         }
       ],
@@ -678,7 +678,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 459.6\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
+          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/269\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN4\")\n  |> drop(columns: [\"host\"])\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 459.6\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
           "refId": "A"
         }
       ],
@@ -758,12 +758,47 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 459.6\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
+          "query": "import \"date\"\n\nfrom(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"2024/BB/320\")\n  |> filter(fn: (r) => r[\"_field\"] == \"data_AN3\")\n  |> drop(columns: [\"host\"])\n  |> last()\n  |> map(fn: (r) => ({\n       _time: r._time,\n       \"Flow Rate (L/min)\": ((r._value - 4.0) / (20.0 - 4.0)) * 459.6\n     }))\n  |> keep(columns: [\"_time\", \"Flow Rate (L/min)\"])",
           "refId": "A"
         }
       ],
       "title": "Deep Pump 4",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 14,
+        "x": 5,
+        "y": 18
+      },
+      "id": 104,
+      "links": [],
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n<a href=\"https://www.w3schools.com/\"alt=\"HTML tutorial\" style=\"font-size: 20px; margin:475px;text-align: center;color: white; text-decoration: none\">Explore More</a>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
+          },
+          "query": "",
+          "refId": "A"
+        }
+      ],
+      "type": "text"
     },
     {
       "datasource": {
@@ -860,7 +895,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n    |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpin/flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305149/tx\"  ))\n    |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n    |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpin/flow_rate\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305149/tx\"  ))\n  |> drop(columns: [\"host\"])\n    |> last(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n",
           "refId": "A"
         }
       ],
@@ -934,7 +969,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305149/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpin/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305149/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpin/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n|> drop(columns: [\"host\"])\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -1007,7 +1042,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305153/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpmis/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
+          "query": "from(bucket: \"AHK-AKDL\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/AKH_TN2305153/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/AKH/AKDL/elec/main/etpmis/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"host\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -1335,6 +1370,6 @@
   "timezone": "",
   "title": "Landing Page",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e992",
-  "version": 57,
+  "version": 69,
   "weekStart": ""
 }
