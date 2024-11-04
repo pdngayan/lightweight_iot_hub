@@ -770,6 +770,28 @@
         "type": "influxdb",
         "uid": "cd05f6cb-b70f-47e0-9f01-b72713125010"
       },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 2,
         "w": 14,
@@ -779,13 +801,69 @@
       "id": 104,
       "links": [],
       "options": {
-        "code": {
-          "language": "plaintext",
-          "showLineNumbers": false,
-          "showMiniMap": false
+        "inlineEditing": false,
+        "root": {
+          "background": {
+            "color": {
+              "fixed": "transparent"
+            }
+          },
+          "border": {
+            "color": {
+              "fixed": "dark-green"
+            }
+          },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          },
+          "elements": [
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 22,
+                "text": {
+                  "fixed": "Explore More"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "center",
+                "vertical": "center"
+              },
+              "name": "Element 1",
+              "placement": {
+                "height": 86,
+                "left": 2,
+                "top": -0.14583206176757812,
+                "width": 860
+              },
+              "type": "text"
+            }
+          ],
+          "name": "Element 1730616917993",
+          "placement": {
+            "height": 100,
+            "left": 0,
+            "top": 0,
+            "width": 100
+          },
+          "type": "frame"
         },
-        "content": "\n<a href=\"https://www.w3schools.com/\"alt=\"HTML tutorial\" style=\"font-size: 20px; margin:475px;text-align: center;color: white; text-decoration: none\">Explore More</a>",
-        "mode": "html"
+        "showAdvancedTypes": false
       },
       "pluginVersion": "10.2.1",
       "targets": [
@@ -798,7 +876,8 @@
           "refId": "A"
         }
       ],
-      "type": "text"
+      "transparent": true,
+      "type": "canvas"
     },
     {
       "datasource": {
@@ -1370,6 +1449,6 @@
   "timezone": "",
   "title": "Landing Page",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e992",
-  "version": 69,
+  "version": 70,
   "weekStart": ""
 }
