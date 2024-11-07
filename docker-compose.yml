@@ -114,6 +114,20 @@ services:
     networks:
       - iot
 
+  telegraf61:
+    image: telegraf
+    container_name: telegraf61
+    restart: always
+    volumes:
+      - ./telegrafEpic4.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
   telegraf7:
     image: telegraf
     container_name: telegraf7
