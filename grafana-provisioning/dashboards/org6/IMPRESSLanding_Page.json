@@ -263,7 +263,7 @@
               }
             ]
           },
-          "unit": "Kg"
+          "unit": "Ton"
         },
         "overrides": []
       },
@@ -296,7 +296,7 @@
             "type": "influxdb",
             "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
           },
-          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/TN2305158/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/random/flow_rate\")\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/TN2305158/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/random/flow\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0 *1000.00) }))\n  |> sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -365,7 +365,7 @@
             "type": "influxdb",
             "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
           },
-          "query": "dp1=from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305102/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/deep1/flow_rate\")\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")\n\n  dp2=from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305103/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/deep2/flow_rate\")\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")\n\n  dp3=from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305099/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/deep3/flow_rate\")\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")\n\n      union(tables: [dp1, dp2,dp3])\n      |> group(columns: [])  // Ungroup data to remove group keys\n  |>sum(column: \"_value\")",
+          "query": "dp1=from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305102/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/deep1/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n\n  dp2=from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305103/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/deep2/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n\n  dp3=from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305099/tx\"  ))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/deep3/flow\")\n|> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n\n      union(tables: [dp1, dp2,dp3])\n      |> group(columns: [])  // Ungroup data to remove group keys\n  |>sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -665,7 +665,7 @@
             "type": "influxdb",
             "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
           },
-          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305105/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/IMPRESS/INCTL/elec/main/gen2/P\")\n  |> last(column: \"_value\")",
+          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305105/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/IMPRESS/INCTL/elec/main/gen2/P\")\n    |> drop(columns: [\"host\"])\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -764,7 +764,7 @@
             "type": "influxdb",
             "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
           },
-          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305105/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/IMPRESS/INCTL/main/gen3/P\")\n  |> last(column: \"_value\")",
+          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305105/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/IMPRESS/INCTL/main/gen3/P\")\n    |> drop(columns: [\"host\"])\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -872,7 +872,7 @@
             "type": "influxdb",
             "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
           },
-          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305105/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/IMPRESS/INCTL/elec/main/mreb1/E\")\n  |> last(column: \"_value\")",
+          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/IMPRESS/INCTL/elec/main/gen2/E\")\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -965,7 +965,7 @@
             "type": "influxdb",
             "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
           },
-          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305105/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/IMPRESS/INCTL/elec/main/solar/E\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> window(every: 1h)\n  |> difference(nonNegative: true)\n  |> sum()\n  |> duplicate(column: \"_stop\", as: \"_time\")\n  |> window(every: inf)\n  |> sort(columns: [\"_time\"])",
+          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/IMPRESS/INCTL/elec/main/gen2/E\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> window(every: 1h)\n  |> difference(nonNegative: true)\n  |> sum()\n  |> duplicate(column: \"_stop\", as: \"_time\")\n  |> window(every: inf)\n  |> sort(columns: [\"_time\"])",
           "refId": "A"
         }
       ],
@@ -1171,7 +1171,7 @@
             "type": "influxdb",
             "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
           },
-          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305105/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/IMPRESS/INCTL/elec/main/gen2/E\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> sum(column: \"_value\")\n     |> map(fn: (r) => ({r with _value: r._value /1000.00 * 0.53/1000.0}))",
+          "query": "gg2=from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/TN2305105/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/IMPRESS/INCTL/elec/main/gen2/E\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> sum(column: \"_value\")\n     |> map(fn: (r) => ({r with _value: r._value /1000.00 * 0.53/1000.0}))\n\n     sb1=from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/TN2305158/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/random/flow_rate\")\n  |> group(columns: [\"customer\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> sum(column: \"_value\")\n     |> map(fn: (r) => ({r with _value: r._value * 3.00 * 0.056/1000.0}))\n\n\n  union(tables: [gg2, sb1])\n  |> group(columns: [])  // Ungroup data to remove group keys\n  |> sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -1421,7 +1421,7 @@
             "type": "influxdb",
             "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
           },
-          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/TN2305113/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/inlet/flow_rate\")\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"host\"])\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
+          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/TN2305113/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/inlet/flow_rate\")\n  |> difference(nonNegative: true)\n  |> drop(columns: [\"host\"])\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"_measurement\", \"tag\"])\n  |> drop(columns: [\"_field\", \"tag\"])\n  |> drop(columns: [\"_start\", \"tag\"])\n  |> drop(columns: [\"_stop\", \"tag\"])\n  |> drop(columns: [\"customer\", \"tag\"])\n  |> drop(columns: [\"device\", \"tag\"])\n  |> drop(columns: [\"group\", \"tag\"])\n  |> drop(columns: [\"panel_board\", \"tag\"])\n  |> drop(columns: [\"power_analyze\", \"tag\"])\n  |> drop(columns: [\"topic\", \"tag\"])\n  |> drop(columns: [\"utility_type\", \"tag\"])",
           "refId": "A"
         }
       ],
@@ -1490,7 +1490,7 @@
             "type": "influxdb",
             "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
           },
-          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/TN2305104/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/dyfin/flow_rate\")\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/TN2305104/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/dyfin/flow_rate\")\n  |> difference(nonNegative: true)\n    |> drop(columns: [\"host\"])\n  |> sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -1663,7 +1663,7 @@
             "type": "influxdb",
             "uid": "a78f0373-a99b-4dae-a1cc-218ab346064d"
           },
-          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/TN2305101/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/washing/flow_rate\")\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")",
+          "query": "from(bucket: \"IMPRESS\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/TN2305101/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/IMPRESS/INCTL/elec/main/washing/flow_rate\")\n  |> difference(nonNegative: true)\n    |> drop(columns: [\"host\"])\n  |> sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -1685,6 +1685,6 @@
   "timezone": "browser",
   "title": "Landing Page",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e992",
-  "version": 68,
+  "version": 80,
   "weekStart": ""
 }
