@@ -223,7 +223,7 @@
           "refId": "A"
         }
       ],
-      "title": "Daily Consumption",
+      "title": "Total Consumption",
       "transformations": [],
       "type": "stat"
     },
@@ -1955,7 +1955,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "1m",
+  "refresh": "",
   "schemaVersion": 38,
   "tags": [],
   "templating": {
@@ -1969,6 +1969,6 @@
   "timezone": "",
   "title": "Water Distribution",
   "uid": "bdaa5bea-518b-4302-82e6-fa8a73ca1d2111",
-  "version": 88,
+  "version": 89,
   "weekStart": ""
 }
