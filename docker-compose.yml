@@ -232,7 +232,6 @@ services:
     image: pdngayan1/grafana:v1
     container_name: grafana
     restart: always
-    user: root
     ports:
       - "3000:3000"
     networks:
