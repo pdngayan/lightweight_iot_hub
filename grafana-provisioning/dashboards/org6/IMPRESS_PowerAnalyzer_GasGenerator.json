@@ -1269,7 +1269,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "watth"
         },
         "overrides": []
       },
@@ -1477,6 +1478,6 @@
   "timezone": "",
   "title": "Power Analyzer - Gas Generator",
   "uid": "fe2a78f3-a70b-40c2-8479-d62b0sdfsdfsd2",
-  "version": 17,
+  "version": 20,
   "weekStart": ""
 }

@@ -239,14 +239,14 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
-            "fillOpacity": 63,
+            "fillOpacity": 100,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineWidth": 1,
+            "lineWidth": 0,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -316,10 +316,11 @@
       },
       "id": 74,
       "options": {
-        "barRadius": 0.2,
-        "barWidth": 0.84,
+        "barRadius": 0,
+        "barWidth": 0.7,
+        "colorByField": "Hourly Consumption (m³)",
         "fullHighlight": false,
-        "groupWidth": 0.7,
+        "groupWidth": 0.5,
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -333,7 +334,7 @@
           "mode": "single",
           "sort": "none"
         },
-        "xTickLabelRotation": 90,
+        "xTickLabelRotation": -45,
         "xTickLabelSpacing": 0
       },
       "pluginVersion": "10.2.1",
@@ -1163,14 +1164,14 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
-            "fillOpacity": 80,
+            "fillOpacity": 100,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineWidth": 1,
+            "lineWidth": 0,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1240,10 +1241,11 @@
       },
       "id": 86,
       "options": {
-        "barRadius": 0.15,
-        "barWidth": 0.8,
+        "barRadius": 0,
+        "barWidth": 0.7,
+        "colorByField": "Hourly Consumption (m³)",
         "fullHighlight": false,
-        "groupWidth": 0.7,
+        "groupWidth": 1,
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1257,7 +1259,9 @@
           "mode": "single",
           "sort": "none"
         },
-        "xTickLabelRotation": -90,
+        "xField": "_time",
+        "xTickLabelMaxLength": 0,
+        "xTickLabelRotation": -45,
         "xTickLabelSpacing": 0
       },
       "pluginVersion": "10.2.1",
@@ -1484,6 +1488,6 @@
   "timezone": "",
   "title": "Deep Pump",
   "uid": "bdaa5bea-518b-4302-82e6-fa8a73ca1d211",
-  "version": 163,
+  "version": 165,
   "weekStart": ""
 }
