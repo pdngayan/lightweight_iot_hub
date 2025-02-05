@@ -6,7 +6,7 @@ providers:
     type: file
     disableDeletion: false
     editable: true
-    updateIntervalSeconds: 10
+    updateIntervalSeconds: 21600
     allowUiUpdates: true
     options:
       path: /etc/grafana/provisioning/dashboards/org3
