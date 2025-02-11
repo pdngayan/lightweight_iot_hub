@@ -247,7 +247,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305145/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/deep2/flow\")\n      |> drop(columns: [\"host\"])\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> aggregateWindow(every: 1m, fn: last)  \n  |> aggregateWindow(every: 1h, fn: sum)    \n  |> cumulativeSum(columns: [\"_value\"]) \n\n",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305145/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/deep2/flow\")\n      |> drop(columns: [\"host\"])\n        |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> sum(column: \"_value\")\n\n",
           "refId": "A"
         }
       ],
@@ -293,7 +293,7 @@
       "id": 4,
       "options": {
         "colorMode": "background_solid",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
@@ -313,7 +313,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "\nfrom(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/hameem_TN2305173/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/etpin2/flow\")\n  //  |> filter(fn: (r) => r[\"host\"] == \"b7762e8ca7d6\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> aggregateWindow(every: 1m, fn: last)  \n  |> aggregateWindow(every: 1h, fn: sum)    \n  |> cumulativeSum(columns: [\"_value\"]) \n\n//union(tables: [etp1, etp2])\n  //|> group(columns: [])  // Ungroup data to remove group keys\n  //|> sum(column: \"_value\")",
+          "query": "etp1 = from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/hameem_TN2305172/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"NCING/HAMEEM/CWL/elec/main/etpin1/flow_rate\")\n  |> difference(nonNegative: true)\n\netp2 = from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => r[\"topic\"] == \"tn/emr/hameem_TN2305173/tx\")\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/etpin2/flow_rate\")\n  |> difference(nonNegative: true)\n\nunion(tables: [etp1, etp2])\n  |> group(columns: [])  // Ungroup data to remove group keys\n  |> sum(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -379,7 +379,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305091/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/airf1/flow\")\n  // |> filter(fn: (r) => r[\"host\"] == \"b7762e8ca7d6\")\n  |> map(fn: (r) => ({r with _value: r._value /(3600.0) }))\n  |> aggregateWindow(every: 1m, fn: last)  \n  |> aggregateWindow(every: 1h, fn: sum)    \n  |> cumulativeSum(columns: [\"_value\"]) ",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305091/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/airf1/flow_rate\")\n  |> difference(nonNegative: true)\n  |> sum(column: \"_value\")\n  |> drop(columns: [\"host\"])",
           "refId": "A"
         }
       ],
@@ -1242,7 +1242,7 @@
             "type": "influxdb",
             "uid": "d20a60a6-f1f7-4218-be5c-0556f6667f1b"
           },
-          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305091/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/airf1/flow_rate\")\n    |> drop(columns: [\"host\"])\n  |> last(column: \"_value\")",
+          "query": "from(bucket: \"HAMEEM\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n  |> filter(fn: (r) => (r[\"topic\"] == \"tn/emr/hameem_TN2305091/tx\"))\n  |> filter(fn: (r) => r[\"_field\"] == \"FLOW1_NCING/HAMEEM/CWL/elec/main/airf1/flow_rate\")\n  |> last(column: \"_value\")",
           "refId": "A"
         }
       ],
@@ -1811,6 +1811,6 @@
   "timezone": "browser",
   "title": "Landing Page",
   "uid": "cf5546ad-8bcf-41b4-9bc9-34a64d882e992",
-  "version": 73,
+  "version": 67,
   "weekStart": ""
 }
