@@ -229,7 +229,7 @@ services:
 
   
   grafana:
-    image: pdngayan1/grafana:v1
+    image: pdngayan1/grafana:v2
     container_name: grafana
     restart: always
     ports:

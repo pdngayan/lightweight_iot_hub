@@ -215,3 +215,7 @@ https://oauth2.googleapis.com/token
 "2024/BB/222",--
 "2024/BB/256",
 "2024/BB/298"
+
+docker build -f Dockerfile_grafana  -t pdngayan1/grafana:v2 .
+
+docker push  pdngayan1/grafana:v2 
