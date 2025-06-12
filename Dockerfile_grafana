@@ -1,0 +1,37 @@
+# Start with the official Grafana image
+FROM grafana/grafana:12.0.1
+
+# Copy your custom logo to overwrite the default Grafana logo
+# Replace `your-logo.png` with the path to your custom logo file
+# Note: The path `/usr/share/grafana/public/img/grafana_icon.svg`
+# is an example and may change based on Grafana's version and structure.
+USER root
+
+#RUN rm -rf /usr/share/grafana/public
+
+#RUN mkdir /usr/share/grafana/public
+
+#COPY img/logo.svg /usr/share/grafana/public/img/grafana_icon.svg
+COPY img/logo.svg /usr/share/grafana/public/img/apple-touch-icon.png
+# Same for any other assets you wish to replace, such as favicon
+COPY img/fav32.png /usr/share/grafana/public/img/fav32.png
+
+COPY img/background.svg /usr/share/grafana/public/img/g8_login_dark.svg
+COPY img/background.svg /usr/share/grafana/public/img/g8_home_v2.svg
+
+
+
+
+RUN find /usr/share/grafana/public/build/ -type f -name "*.js" -exec sed -i 's|"Welcome to Grafana"|"Welcome to NCINGA Dashboard"|g' {} +
+RUN find /usr/share/grafana/public/build/ -type f -name "*.js" -exec sed -i 's|"Grafana"|"NCINGA"|g' {} +
+
+RUN find /usr/share/grafana/public/build/ -name *.js -exec sed -i 's|{target:"_blank",id:"documentation",text:(0,r.t)("nav.help/documentation","Documentation"),icon:"document-info",url:"https://grafana.com/docs/grafana/latest/?utm_source=grafana_footer"},{target:"_blank",id:"support",text:(0,r.t)("nav.help/support","Support"),icon:"question-circle",url:"https://grafana.com/products/enterprise/?utm_source=grafana_footer"},{target:"_blank",id:"community",text:(0,r.t)("nav.help/community","Community"),icon:"comments-alt",url:"https://community.grafana.com/?utm_source=grafana_footer"}||g' {} \;
+RUN find /usr/share/grafana/public/build/ -name *.js -exec sed -i 's|{target:"_blank",id:"version",text:`${e.edition}${s}`,url:t.licenseUrl}||g' {} \;
+RUN find /usr/share/grafana/public/build/ -name *.js -exec sed -i 's|{target:"_blank",id:"version",text:`v${e.version} (${e.commit})`,url:i?"https://github.com/grafana/grafana/blob/main/CHANGELOG.md":void 0}||g' {} \;
+RUN find /usr/share/grafana/public/build/ -name *.js -exec sed -i 's|{target:"_blank",id:"updateVersion",text:"New version available!",icon:"download-alt",url:"https://grafana.com/grafana/download?utm_source=grafana_footer"}||g' {} \;
+RUN find /usr/share/grafana/public/build/ -name *.js -exec sed -i 's|{target:"_blank",id:"version",text:`${e.edition}${s}`,url:t.licenseUrl}||g' {} \;
+# If you need to replace text or names, consider using a script to modify specific files
+# This could be a sed command in a shell script that finds and replaces text
+# Here's a hypothetical example that would need adjusting based on actual file content and structure
+
+
