@@ -11,8 +11,9 @@ USER root
 
 #RUN mkdir /usr/share/grafana/public
 
-#COPY img/logo.svg /usr/share/grafana/public/img/grafana_icon.svg
+COPY img/logo.svg /usr/share/grafana/public/img/grafana_icon.svg
 COPY img/logo.svg /usr/share/grafana/public/img/apple-touch-icon.png
+COPY img/logo.svg /usr/share/grafana/public/img/mstile-150x150.png
 # Same for any other assets you wish to replace, such as favicon
 COPY img/fav32.png /usr/share/grafana/public/img/fav32.png
 
