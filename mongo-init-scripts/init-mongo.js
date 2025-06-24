@@ -4,7 +4,7 @@ db.createCollection('bd_user');
 db.createCollection('bd_company');
 db.createCollection('bd_plant');
 
-var companyId = db.bd_company.insertOne({
+var mainOrg = db.bd_company.insertOne({
   compName: "Main Org.",
   compStatus: "Active",
   compNoOfSitesAttached: 5,
@@ -30,7 +30,7 @@ db.bd_user.insertOne({
   email: "client@ncinga.net",
   password: "$2a$10$yi7vjGzLmyFSRHQoEZQ6N./75iXMUm2JaNhb44JAGt7bDcIGc4SUy",
   userRole: "CLIENT",
-  companyRegistered: [companyId.toString()],
+  companyRegistered: [mainOrg.toString()],
   _class: "com.IoTAdmin.IoTAdminBackend.entity.UserManagement"
 });
 
@@ -41,7 +41,7 @@ db.bd_plant.insertOne({
   dashboardLocation: "Colombo",
   dashboardURL: "http://localhost/grafana/d/e47ef940-8b6b-43fa-8ba4-5192be80b2/ifinity?orgId=1&from=now-3h&to=now&timezone=browser&theme=light",
   dashboardDevices: "device 1",
-  company: companyId.toString(),
+  company: mainOrg.toString(),
   _class: "com.IoTAdmin.IoTAdminBackend.entity.DashboardManagement"
 });
 
@@ -50,7 +50,7 @@ db.bd_plant.insertOne({
   dashboardLocation: "Colombo",
   dashboardURL: "http://localhost/grafana/d/af6d510d-8984-4683-bd32-7737d37840df3/ifinity-zone-wise?orgId=1&from=now-6h&to=now&timezone=browser&var-assertID=data_set_MODBUS13&theme=light",
   dashboardDevices: "device 1",
-  company: companyId.toString(),
+  company: mainOrg.toString(),
   _class: "com.IoTAdmin.IoTAdminBackend.entity.DashboardManagement"
 });
 
@@ -59,7 +59,7 @@ db.bd_plant.insertOne({
   dashboardLocation: "Colombo",
   dashboardURL: "http://localhost/grafana/d/e47ef940-8b6b-43fa-8ba4-5192be80b670dsds/ncinga?orgId=1&from=now-3h&to=now&timezone=browser&theme=light",
   dashboardDevices: "device 1",
-  company: companyId.toString(),
+  company: mainOrg.toString(),
   _class: "com.IoTAdmin.IoTAdminBackend.entity.DashboardManagement"
 });
 
@@ -68,7 +68,7 @@ db.bd_plant.insertOne({
   dashboardLocation: "Colombo",
   dashboardURL: "http://localhost/grafana/d/af6d510d-8984-4683-bd32-7737d37840df2/ncinga-zone-wise?orgId=1&from=now-6h&to=now&timezone=browser&var-assertID=data_set_MODBUS10&theme=light",
   dashboardDevices: "device 1",
-  company: companyId.toString(),
+  company: mainOrg.toString(),
   _class: "com.IoTAdmin.IoTAdminBackend.entity.DashboardManagement"
 });
 
@@ -77,6 +77,6 @@ db.bd_plant.insertOne({
   dashboardLocation: "Colombo",
   dashboardURL: "http://localhost/grafana/d/f1dfe679-2a9d-46c6-bf6b-b2761c9d01d1/overall?orgId=1&from=now-30m&to=now&timezone=browser&theme=light",
   dashboardDevices: "device 1",
-  company: companyId.toString(),
+  company: mainOrg.toString(),
   _class: "com.IoTAdmin.IoTAdminBackend.entity.DashboardManagement"
 });
