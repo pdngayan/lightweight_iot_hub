@@ -35,31 +35,7 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=BRN
       - DOCKER_INFLUXDB_INIT_BUCKET=BLI
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=4eYvsu8wZCJ6tKuE2sxvFHkvYFwSMVK0011hEEiojvejzpSaij86vYQomN_12au6eK-2MZ6Knr-Sax201y70w==
-
-  influx-setup:
-    image: influxdb
-    container_name: influxdb-setup
-    depends_on:
-      - influxdb
-    networks:
-      - iot
-    environment:
-      - DOCKER_INFLUXDB_INIT_ORG=BRN
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=4eYvsu8wZCJ6tKuE2sxvFHkvYFwSMVK0011hEEiojvejzpSaij86vYQomN_12au6eK-2MZ6Knr-Sax201y70w==
-    command: >
-        bash -c "
-          echo 'Waiting for InfluxDB to be ready...'
-          until influx ping --host http://influxdb:8086; do 
-            echo 'Still waiting...'
-            sleep 3
-          done
-          echo 'InfluxDB is ready, creating additional buckets...'
-          influx bucket create -n 'NCINGA' -o "$$DOCKER_INFLUXDB_INIT_ORG" -t "$$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN" --host http://influxdb:8086 || echo 'NCINGA bucket might already exist'
-          influx bucket create -n 'IFINITY' -o "$$DOCKER_INFLUXDB_INIT_ORG" -t "$$DOCKER_INFLUXDB_INIT_ADMIN_TOKEN" --host http://influxdb:8086 || echo 'IFINITY bucket might already exist'
-          echo 'Bucket setup complete!'
-        "
-    restart: "no"
-
+  
   telegraf:
     image: telegraf
     container_name: telegraf
@@ -95,165 +71,165 @@ services:
     networks:
       - iot
 
-#  telegraf4:
-#    image: telegraf
-#    container_name: telegraf4
-#    restart: always
-#    volumes:
-#      - ./telegrafEpic1.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
-#      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
-#
-#
-#  telegraf5:
-#    image: telegraf
-#    container_name: telegraf5
-#    restart: always
-#    volumes:
-#      - ./telegrafEpic2.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
-#      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
-#
-#  telegraf6:
-#    image: telegraf
-#    container_name: telegraf6
-#    restart: always
-#    volumes:
-#      - ./telegrafEpic3.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
-#      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
-#
-#  telegraf61:
-#    image: telegraf
-#    container_name: telegraf61
-#    restart: always
-#    volumes:
-#      - ./telegrafEpic4.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
-#      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
-#
-#  telegraf7:
-#    image: telegraf
-#    container_name: telegraf7
-#    restart: always
-#    volumes:
-#      - ./telegrafAKH1.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
-#      - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
-#
-#  telegraf8:
-#    image: telegraf
-#    container_name: telegraf8
-#    restart: always
-#    volumes:
-#      - ./telegrafUrmi.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
-#      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
-#
-#  telegraf9:
-#    image: telegraf
-#    container_name: telegraf9
-#    restart: always
-#    volumes:
-#      - ./telegrafAKH2.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
-#      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
-#
-#  telegraf10:
-#    image: telegraf
-#    container_name: telegraf10
-#    restart: always
-#    volumes:
-#      - ./telegrafHameem.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
-#      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
-#
-#  telegraf11:
-#    image: telegraf
-#    container_name: telegraf11
-#    restart: always
-#    volumes:
-#      - ./telegrafImpress1.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
-#      - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
-#
-#  telegraf12:
-#    image: telegraf
-#    container_name: telegraf12
-#    restart: always
-#    volumes:
-#      - ./telegrafImpress2.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
-#      - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
-#
-#  telegraf13:
-#    image: telegraf
-#    container_name: telegraf13
-#    restart: always
-#    volumes:
-#      - ./telegrafImpress3.conf:/etc/telegraf/telegraf.conf:ro
-#      - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
-#      - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
-#      - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
-#    depends_on:
-#      - influxdb
-#    networks:
-#      - iot
+  telegraf4:
+    image: telegraf
+    container_name: telegraf4
+    restart: always
+    volumes:
+      - ./telegrafEpic1.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+
+  telegraf5:
+    image: telegraf
+    container_name: telegraf5
+    restart: always
+    volumes:
+      - ./telegrafEpic2.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+  telegraf6:
+    image: telegraf
+    container_name: telegraf6
+    restart: always
+    volumes:
+      - ./telegrafEpic3.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+  telegraf61:
+    image: telegraf
+    container_name: telegraf61
+    restart: always
+    volumes:
+      - ./telegrafEpic4.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+  telegraf7:
+    image: telegraf
+    container_name: telegraf7
+    restart: always
+    volumes:
+      - ./telegrafAKH1.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
+      - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
+      - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+  telegraf8:
+    image: telegraf
+    container_name: telegraf8
+    restart: always
+    volumes:
+      - ./telegrafUrmi.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+  telegraf9:
+    image: telegraf
+    container_name: telegraf9
+    restart: always
+    volumes:
+      - ./telegrafAKH2.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+  telegraf10:
+    image: telegraf
+    container_name: telegraf10
+    restart: always
+    volumes:
+      - ./telegrafHameem.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/magicbit/AmazonRootCA1.pem:/mosquitto/AmazonRootCA1.pem
+      - ./cert/magicbit/certificate.pem.crt:/mosquitto/certificate.pem.crt
+      - ./cert/magicbit/private.pem.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+  telegraf11:
+    image: telegraf
+    container_name: telegraf11
+    restart: always
+    volumes:
+      - ./telegrafImpress1.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
+      - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
+      - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+  telegraf12:
+    image: telegraf
+    container_name: telegraf12
+    restart: always
+    volumes:
+      - ./telegrafImpress2.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
+      - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
+      - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
+
+  telegraf13:
+    image: telegraf
+    container_name: telegraf13
+    restart: always
+    volumes:
+      - ./telegrafImpress3.conf:/etc/telegraf/telegraf.conf:ro
+      - ./cert/ncingaaws/rootCA.crt:/mosquitto/AmazonRootCA1.pem
+      - ./cert/ncingaaws/ncinga.cert.pem:/mosquitto/certificate.pem.crt
+      - ./cert/ncingaaws/ncinga.private.key:/mosquitto/private.pem.key
+    depends_on:
+      - influxdb
+    networks:
+      - iot
 
 
   
   grafana:
-    image: pdngayan1/grafana:v2
+    image: pdngayan1/grafana:v1
     container_name: grafana
     restart: always
     ports:
@@ -267,64 +243,52 @@ services:
     depends_on:
       - influxdb
 
-  mongodb:
-    image: mongo:8.0.9
-    container_name: mongodb
-    restart: always
-    ports:
-      - "27017:27017"
-    networks:
-      - iot
-    volumes:
-      - mongo-data:/data/db
-      - ./mongo-init-scripts:/docker-entrypoint-initdb.d
-
-  iotbackend:
-    image: pdngayan1/iot-backend:v1
-    container_name: iotbackend
-    restart: always
-    ports:
-      - "8081:8080"
-    networks:
-      - iot
-    depends_on:
-      - mongodb
-
-  iotclient:
-    image: pdngayan1/iot-client-fe:v1
-    container_name: iotclient
-    restart: always
-    ports:
-      - "81:80"
-    networks:
-      - iot
-    depends_on:
-      - iotbackend
-
-  iotadmin:
-    image: pdngayan1/iot-admin-fe:v1
-    container_name: iotadmin
-    restart: always
-    ports:
-      - "82:80"
-    networks:
-      - iot
-    depends_on:
-      - iotbackend
-
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    restart: always
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - grafana
-    networks:
-      - iot
-
+#  keycloak-db:
+#    image: postgres:latest
+#    container_name: keycloak-db
+#    user: root  # needed because windows hates me
+#    volumes:
+#      - keycloak-db:/var/lib/postgresql/data
+#    networks:
+#      - iot
+#    ports:
+#      - "25432:5432"
+#    environment:
+#      POSTGRES_DB: keycloak
+#      POSTGRES_USER: keycloak
+#      POSTGRES_PASSWORD: password
+#
+#  keycloak:
+#    image: quay.io/keycloak/keycloak:23.0.6
+#    container_name: keycloak
+#    command: start-dev
+#    depends_on:
+#      - keycloak-db
+#    networks:
+#      - iot
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      DB_VENDOR: POSTGRES
+#      DB_ADDR: keycloak-db
+#      DB_PORT: 5432
+#      DB_DATABASE: keycloak
+#      DB_USER: keycloak
+#      DB_PASSWORD: password
+#      KEYCLOAK_USER: admin
+#      KEYCLOAK_PASSWORD: admin
+#      KEYCLOAK_ADMIN: admin
+#      KEYCLOAK_ADMIN_PASSWORD: admin
+#      DEBUG: 'true'
+#      DEBUG_PORT: '*:8787'
+#      KC_FEATURES: preview
+#      PROXY_ADDRESS_FORWARDING: "true"
+#      KC_PROXY: edge
+#      KC_HTTP_ENABLED: "true"
+#      KC_HTTP_RELATIVE_PATH: "/"
+#
+#    volumes:
+#      - kc_data:/opt/keycloak/data
 
 networks:
   iot:
@@ -333,4 +297,5 @@ volumes:
   grafana-data:
   influxdb-data:
   influxdb-config:
-  mongo-data:
+#  keycloak-db:
+#  kc_data:
