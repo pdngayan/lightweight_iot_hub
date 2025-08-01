@@ -37,14 +37,13 @@
 # This is the minimum TLS version allowed. By default, this value is empty. Accepted values are: TLS1.2, TLS1.3. If nothing is set TLS1.2 would be taken
 ;min_tls_version = ""
 
-# The ip address to bind to, empty will bind to all interfaces
-;http_addr =
+# The ip address to bind to, empty will bind to all interfaces;http_addr =
 
 # The http port  to use
 ;http_port = 3000
 
 # The public facing domain name used to access grafana from a browser
-domain = iot.ncinga.net
+;domain = iot.ncinga.net
 
 # Redirect to correct domain if host header does not match domain
 # Prevents DNS rebinding attacks
@@ -52,7 +51,8 @@ domain = iot.ncinga.net
 
 # The full public facing url you use in browser, used for redirects and emails
 # If you use reverse proxy and sub path specify full url (with sub path)
-root_url = http://iot.ncinga.net/grafana/
+;root_url = http://iot.ncinga.net/grafana/
+root_url = %(protocol)s://%(domain)s/grafana/
 
 # Serve Grafana from subpath specified in `root_url` setting. By default it is set to `false` for compatibility reasons.
 serve_from_sub_path = true
@@ -331,7 +331,7 @@ keep_alive_seconds = 300
 ;cookie_samesite = lax
 
 # set to true if you want to allow browsers to render Grafana in a <frame>, <iframe>, <embed> or <object>. default is false.
-;allow_embedding = false
+allow_embedding = true
 
 # Set to true if you want to enable http strict transport security (HSTS) response header.
 # HSTS tells browsers that the site should only be accessed using HTTPS.
@@ -554,7 +554,7 @@ keep_alive_seconds = 300
 #################################### Anonymous Auth ######################
 [auth.anonymous]
 # enable anonymous access
-;enabled = false
+enabled = false
 
 # specify organization name that should be used for unauthenticated users
 ;org_name = Main Org.
@@ -563,7 +563,7 @@ keep_alive_seconds = 300
 ;org_role = Viewer
 
 # mask the Grafana version number for unauthenticated users
-;hide_version = false
+hide_version = true
 
 #################################### GitHub Auth ##########################
 [auth.github]
@@ -727,10 +727,10 @@ keep_alive_seconds = 300
 
 #################################### Auth Proxy ##########################
 [auth.proxy]
-;enabled = false
-;header_name = X-WEBAUTH-USER
-;header_property = username
-;auto_sign_up = true
+enabled = true
+header_name = X-WEBAUTH-USER
+header_property = username
+auto_sign_up = true
 ;sync_ttl = 60
 ;whitelist = 192.168.1.1, 192.168.2.1
 ;headers = Email:X-User-Email, Name:X-User-Name
